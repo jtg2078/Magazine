@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>magazine-0</string>
+		<key>title</key>
+		<string>2011春夏</string>
+		<key>date</key>
+		<date>2011-03-03T12:08:11Z</date>
+		<key>cover</key>
+		<string>https://www.dropbox.com/s/0zizxjjg8l39k4g/cover_newsstand.png</string>
+		<key>content</key>
+		<string>http://hij.com</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>magazine-1</string>
+		<key>title</key>
+		<string>2011秋冬</string>
+		<key>date</key>
+		<date>2011-10-03T12:08:11Z</date>
+		<key>cover</key>
+		<string>https://www.dropbox.com/s/0zizxjjg8l39k4g/cover_newsstand.png</string>
+		<key>content</key>
+		<string>http://hij.com</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>magazine-2</string>
+		<key>title</key>
+		<string>2012春夏</string>
+		<key>date</key>
+		<date>2012-03-03T12:08:11Z</date>
+		<key>cover</key>
+		<string>https://www.dropbox.com/s/0zizxjjg8l39k4g/cover_newsstand.png</string>
+		<key>content</key>
+		<string>http://hij.com</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>magazine-3</string>
+		<key>title</key>
+		<string>2012秋冬</string>
+		<key>date</key>
+		<date>2012-10-03T12:08:11Z</date>
+		<key>cover</key>
+		<string>https://www.dropbox.com/s/0zizxjjg8l39k4g/cover_newsstand.png</string>
+		<key>content</key>
+		<string>http://hij.com</string>
+	</dict>
+</array>
+</plist>
