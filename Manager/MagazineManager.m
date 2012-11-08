@@ -31,6 +31,14 @@
 - (void)getIssuesListSuccess:(void (^)())success
                     failure:(void (^)(NSString *reason, NSError *error))failure
 {
+    NSURL *catalogURL = [[NSBundle mainBundle] URLForResource:@"catalog" withExtension:@"plist"];
+    self.issues = [[NSArray alloc] initWithContentsOfURL:catalogURL];
+    self.ready = YES;
+    [self addIssuesInNewsstand];
+    
+    if(success)
+        success();
+    /*
     AFPropertyListRequestOperation *op = [AFPropertyListRequestOperation propertyListRequestOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://dl.dropbox.com/u/60296373/Magazine/catalog.plist"]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, id propertyList) {
         
         self.issues = [NSArray arrayWithArray:propertyList];
@@ -47,6 +55,7 @@
     }];
     
     [op start];
+     */
 }
 
 - (void)addIssuesInNewsstand
@@ -95,6 +104,7 @@
     NSString *coverFileName = [coverURL lastPathComponent];
     NSString *coverFilePath = [CacheDirectory stringByAppendingPathComponent:coverFileName];
     UIImage *image = [UIImage imageWithContentsOfFile:coverFilePath];
+    image = [UIImage imageNamed:@"bookCover_large.png"];
     
     if(image)
     {

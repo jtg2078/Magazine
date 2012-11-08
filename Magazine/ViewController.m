@@ -10,6 +10,7 @@
 #import "MagazineFooterView.h"
 #import "SVProgressHUD.h"
 #import "SSZipArchive.h"
+#import "RootViewController.h"
 
 @interface ViewController ()
 
@@ -34,15 +35,32 @@
     
     // -------------------- cell view --------------------
     
-    /*
-    [self.collectionView registerClass:[UICollectionViewCell class]
-            forCellWithReuseIdentifier:@"MagazineCell"];
-     */
-    
     // -------------------- collection view --------------------
     
     UIImageView *bg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_bookshelf.png"]];
     self.collectionView.backgroundView = bg;
+    
+    // -------------------- flow layout --------------------
+    
+    cellSizeWidth = 339;
+    cellSizeHeight = 245;
+    
+    self.flowLayout.itemSize = CGSizeMake(cellSizeWidth, cellSizeHeight);
+    self.flowLayout.minimumInteritemSpacing = 30;
+    self.flowLayout.sectionInset = UIEdgeInsetsMake(30, 30, 30, 30);
+    self.flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    
+    // -------------------- page layout --------------------
+    
+    cellSizeWidth = 768 - 60;
+    cellSizeHeight = 960 - 60;
+    
+    self.pageLayout = [[UICollectionViewFlowLayout alloc] init];
+    self.pageLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    self.pageLayout.itemSize = CGSizeMake(cellSizeWidth, cellSizeHeight);
+    self.pageLayout.minimumLineSpacing = 60;
+    self.pageLayout.sectionInset = UIEdgeInsetsMake(0, 38, 0, 38);
+    
     
     // -------------------- tool bar --------------------
     
@@ -67,18 +85,41 @@
     }];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
+}
+
 #pragma mark - user action
 
 - (IBAction)gridViewBarButtonPressed:(id)sender
 {
     self.gridViewBarButton.image = [UIImage imageNamed:@"btn_gridView_selected.png"];
     self.pageViewBarButton.image = [UIImage imageNamed:@"btn_pageView.png"];
+    
+    [self.collectionView setCollectionViewLayout:self.flowLayout animated:YES];
+    
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                                atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
 }
 
 - (IBAction)pageViewBarButtonPressed:(id)sender
 {
     self.gridViewBarButton.image = [UIImage imageNamed:@"btn_gridView.png"];
     self.pageViewBarButton.image = [UIImage imageNamed:@"btn_pageView_selected.png"];
+    
+    [self.collectionView setCollectionViewLayout:self.pageLayout animated:YES];
+    [self.collectionView.collectionViewLayout invalidateLayout];
+    
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                                atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
 }
 
 #pragma mark - UICollectionView Datasource
@@ -173,6 +214,16 @@
 }
  */
 
+/*
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 200;
+}
+ */
+
+#pragma mark - cell configuration
+
+
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView
@@ -187,15 +238,17 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
     // TODO: Deselect item
 }
 
-#pragma mark – UICollectionViewDelegateFlowLayout
+#pragma mark - UICollectionViewDelegateFlowLayout
 
+/*
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGSize size = CGSizeMake(339, 245);
+    CGSize size = CGSizeMake(cellSizeWidth, cellSizeHeight);
     return size;
 }
+ */
 
 /*
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
@@ -217,7 +270,18 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)viewIssue:(NSIndexPath *)indexPath
 {
+    //[self performSegueWithIdentifier:@"goToIssueViewer" sender:self];
     
+    [SVProgressHUD showWithStatus:@"讀取中"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        RootViewController *rvc = [[RootViewController alloc] init];
+        NSString *issueName = [self.manager nameOfIssueAtIndex:indexPath.row];
+        NKIssue *issue = [self.library issueWithName:issueName];
+        self.manager.currentIssuePath = [[self.manager downloadPathForIssue:issue] stringByAppendingPathComponent:@"book"];
+        [self.navigationController pushViewController:rvc animated:YES];
+        [SVProgressHUD dismiss];
+    });
 }
 
 #pragma mark - MagazineCellDownloadingDelegate
@@ -253,7 +317,12 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
     [assetDownload downloadWithDelegate:self];
     
     [self.issuesPreparingForDownload addObject:indexPath];
-    
+}
+
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     
 }
 
@@ -318,6 +387,17 @@ expectedTotalBytes:(long long)expectedTotalBytes
     {
         [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
     }
+}
+
+#pragma mark - misc
+
+- (void)executeBlock:(void (^)())block withDelay:(NSTimeInterval)delayInSeconds
+{
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if(block)
+            block();
+    });
 }
 
 @end

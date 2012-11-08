@@ -20,6 +20,8 @@ typedef enum{
 
 @interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MagazineCellDelegate, MagazineCellDownloadingDelegate, MagazineCellToDownloadDelegate, NSURLConnectionDownloadDelegate>
 {
+    int cellSizeWidth;
+    int cellSizeHeight;
     
 }
 
@@ -28,6 +30,8 @@ typedef enum{
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *gridViewBarButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *pageViewBarButton;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
+@property (strong, nonatomic) UICollectionViewFlowLayout *pageLayout;
 @property (assign, nonatomic) ViewMode viewMode;
 @property (strong, nonatomic) NSMutableSet *issuesPreparingForDownload;
 

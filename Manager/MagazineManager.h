@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) NSArray *issues;
 @property (assign, nonatomic) BOOL ready;
+@property (strong, nonatomic) NSString *currentIssuePath;
 
 + (MagazineManager *)sharedInstance;
 
