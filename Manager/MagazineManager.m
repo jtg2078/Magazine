@@ -21,6 +21,7 @@
 {
     self = [super init];
     if (self) {
+        _isFlowLayout = YES;
 
     }
     return self;

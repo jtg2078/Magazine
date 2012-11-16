@@ -103,6 +103,7 @@
 {
     self.gridViewBarButton.image = [UIImage imageNamed:@"btn_gridView_selected.png"];
     self.pageViewBarButton.image = [UIImage imageNamed:@"btn_pageView.png"];
+    self.manager.isFlowLayout = YES;
     
     [self.collectionView setCollectionViewLayout:self.flowLayout animated:YES];
     
@@ -114,6 +115,7 @@
 {
     self.gridViewBarButton.image = [UIImage imageNamed:@"btn_gridView.png"];
     self.pageViewBarButton.image = [UIImage imageNamed:@"btn_pageView_selected.png"];
+    self.manager.isFlowLayout = NO;
     
     [self.collectionView setCollectionViewLayout:self.pageLayout animated:YES];
     [self.collectionView.collectionViewLayout invalidateLayout];

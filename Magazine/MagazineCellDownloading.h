@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
 @property (weak, nonatomic) IBOutlet UILabel *magazineName;
 @property (weak, nonatomic) IBOutlet UILabel *issueTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *progressBarBgImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *progressBarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *pauseButton;
