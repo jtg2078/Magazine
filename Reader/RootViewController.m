@@ -8,10 +8,14 @@
 
 #import "RootViewController.h"
 #import "PageViewController.h"
-#import "WebViewController.h"
+
 #import "PageHViewController.h"
 #import "HTViewController.h"
-//#import "NBViewController.h"
+#import "CamperMapViewController.h"
+#import "FashionShowViewController.h"
+#import "StoresViewController.h"
+#import "SocialViewController.h"
+#import "AppDelegate.h"
 
 
 @interface RootViewController ()
@@ -29,6 +33,7 @@
 @synthesize pageAry;
 @synthesize indexAry;
 @synthesize indexCell;
+@synthesize historyAry;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,6 +58,8 @@
     [_indexView release];
     [_indexButton release];
     [_myTableView release];
+    [_historyButton release];
+    [_infoButton release];
     [super dealloc];
 }
 
@@ -70,11 +77,13 @@
     
     
     //載入書本內容
+    
     MagazineManager *manager = [MagazineManager sharedInstance];
-    
-     //NSString *path = [[NSBundle mainBundle] --pathForResource:@"book" ofType:@"plist" inDirectory:@"book"];
-    
     NSString *path =  [manager.currentIssuePath stringByAppendingPathComponent:@"book.plist"];
+    
+    /*
+     NSString *path = [[NSBundle mainBundle] --pathForResource:@"book" ofType:@"plist" inDirectory:@"book"];
+     */
     
     NSMutableDictionary *dic=[[NSMutableDictionary alloc] initWithContentsOfFile:path];
     pageAry=[dic objectForKey:@"page"];
@@ -82,8 +91,11 @@
     
     _scrollView.contentSize=CGSizeMake(768*[pageAry count], 1024);
     
+    
+    
     for (int i=0; i<[pageAry count]; i++) {
         NSString *type=[[[pageAry objectAtIndex:i] objectAtIndex:0] objectForKey:@"type"];
+        NSLog(@"%d:%@",i,type);
         if([type isEqualToString:@"image"]){
             PageViewController *page=[[PageViewController alloc] initWithAry:[pageAry objectAtIndex:i]];
             page.view.frame=CGRectMake(768*i, 0, 768, 1024);
@@ -95,44 +107,41 @@
             page.view.frame=CGRectMake(768*i, 0, 768, 1024);
             page.jumpDelegate=self;
             [_scrollView addSubview:page.view];
-            
-        }else if([type isEqualToString:@"html"]){
-            WebViewController *page=[[WebViewController alloc] initWithAry:[pageAry objectAtIndex:i]];
-            page.view.frame=CGRectMake(768*i, 0, 768, 1024);
-            page.jumpDelegate=self;
-            [_scrollView addSubview:page.view];
-        }else if([type isEqualToString:@"BuyingNote"] ){
+        }else if([type isEqualToString:@"BuyingNote"] || [type isEqualToString:@"NewBrand"] || [type isEqualToString:@"TrandLook"] || [type isEqualToString:@"SeasonNews"] || [type isEqualToString:@"AD"]){
             HTViewController *page=[[HTViewController alloc] initWithAry:[pageAry objectAtIndex:i]];
             page.view.frame=CGRectMake(768*i, 0, 768, 1024);
            // page.jumpDelegate=self;
             [_scrollView addSubview:page.view];
-        }else if([type isEqualToString:@"NewBrand"]){
-           // NBViewController *page=[[NBViewController alloc] initWithAry:[pageAry objectAtIndex:i]];
-            //page.view.frame=CGRectMake(768*i, 0, 768, 1024);
-            // page.jumpDelegate=self;
-            //[_scrollView addSubview:page.view];
+        }else if([type isEqualToString:@"CamperMap"]){
+            CamperMapViewController *page=[[CamperMapViewController alloc] initWithAry:[pageAry objectAtIndex:i]] ;
+            page.view.frame=CGRectMake(768*i, 0, 768, 1024);
+            [_scrollView addSubview:page.view];
 
+        }else if([type isEqualToString:@"FashionShow"]){
+            FashionShowViewController *page=[[FashionShowViewController alloc] initWithAry:[pageAry objectAtIndex:i]] ;
+            page.view.frame=CGRectMake(768*i, 0, 768, 1024);
+            [_scrollView addSubview:page.view];
+            
+        }else if([type isEqualToString:@"BackCover"]){
+            SocialViewController *page=[[SocialViewController alloc] initWithAry:[pageAry objectAtIndex:i]];
+            page.view.frame=CGRectMake(768*i, 0, 768, 1024);
+            [_scrollView addSubview:page.view];
+            
         }
+
     }
     
     //載入index 內容
     
-    //NSString *indexPath = [[NSBundle mainBundle] --pathForResource:@"index" ofType:@"plist" inDirectory:@"book"];
-    NSString *indexPath =  [manager.currentIssuePath stringByAppendingPathComponent:@"index.plist"];
+    //NSString *indexPath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"plist" inDirectory:@"book"];
+    NSString *indexPath = [manager.currentIssuePath stringByAppendingPathComponent:@"index.plist"];
     NSMutableDictionary *indexDic=[[NSMutableDictionary alloc] initWithContentsOfFile:indexPath];
     indexAry=[indexDic objectForKey:@"page"];
 
     // Do any additional setup after loading the view from its nib.
-}
--(void)page:(int) jumpNo{
-    CGPoint point=CGPointMake(jumpNo*768, 0);
-    [_scrollView setContentOffset:point animated:YES];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    historyAry=[[[NSMutableArray alloc] init] retain];
+    [historyAry insertObject:[NSNumber numberWithInt:0] atIndex:0];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -149,6 +158,16 @@
     [super viewWillDisappear:animated];
 }
 
+-(void)page:(int) jumpNo{
+    CGPoint point=CGPointMake(jumpNo*768, 0);
+    [_scrollView setContentOffset:point animated:YES];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 
 /*
@@ -181,9 +200,21 @@
    */
 
 
-- (IBAction)homeButtonPressed:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
+- (IBAction)prevPage:(id)sender {
+    if ([historyAry count]>1) {
+        [historyAry removeLastObject];
+        currentPage=[[historyAry lastObject] intValue];
+        [self gotoCurrentPage:currentPage];
+    }
+
+    
+}
+
+- (IBAction)openStores:(id)sender {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    StoresViewController *stores=[[[StoresViewController alloc] initWithNibName:@"StoresViewController" bundle:nil] autorelease];
+    [appDelegate presentViewController:stores animated:YES];
 }
 
 - (void)touchDragInside:(id)sender withEvent:(UIEvent *)event{
@@ -212,13 +243,12 @@
 	// move button
 	_dotButton.center = CGPointMake(_dotButtonX,_dotButton.center.y);
     
+    
     int jumpPageNo=round((_dotButton.center.x-104)/560*([pageAry count]-1));
-    
-    
-    NSDictionary *dic=[[pageAry objectAtIndex:jumpPageNo] objectAtIndex:0];
-    //NSString *filename = [[NSBundle mainBundle] --pathForResource:[dic objectForKey:@"thumb"] ofType:nil inDirectory:@"book"];
     MagazineManager *manager = [MagazineManager sharedInstance];
-    NSString *filename =  [manager.currentIssuePath stringByAppendingPathComponent:@"thumb"];
+    NSDictionary *dic=[[pageAry objectAtIndex:jumpPageNo] objectAtIndex:0];
+    //NSString *filename = [[NSBundle mainBundle] pathForResource:[dic objectForKey:@"thumb"] ofType:nil inDirectory:@"book"];
+    NSString *filename = [manager.currentIssuePath stringByAppendingPathComponent:[dic objectForKey:@"thumb"]];
     UIImage *image=[UIImage imageWithContentsOfFile:filename];
     [_thumbImageView setImage:image];
     
@@ -243,17 +273,26 @@
     
     currentPage=round((_dotButton.center.x-104)/560*([pageAry count]-1));
     [self gotoCurrentPage:currentPage];
+    [historyAry insertObject:[NSNumber numberWithInt:currentPage] atIndex:[historyAry count]];
 
 }
 
 - (IBAction)gotoLeft:(id)sender {
-    currentPage=currentPage-1;
-    [self gotoCurrentPage:currentPage];
+    if (currentPage>1) {
+        currentPage=currentPage-1;
+        [self gotoCurrentPage:currentPage];
+        [historyAry insertObject:[NSNumber numberWithInt:currentPage] atIndex:[historyAry count]];
+    }
+
 }
 
 - (IBAction)gotoRight:(id)sender {
-    currentPage=currentPage+1;
-    [self gotoCurrentPage:currentPage];
+    if (currentPage<([pageAry count]-1)) {
+        currentPage=currentPage+1;
+        [self gotoCurrentPage:currentPage];
+        [historyAry insertObject:[NSNumber numberWithInt:currentPage] atIndex:[historyAry count]];
+    }
+
 }
 
 - (IBAction)showIndex:(id)sender {
@@ -267,18 +306,21 @@
     [_bgAlpha05 setHidden:![_bgAlpha05 isHidden]];
 }
 
+
 -(void)gotoCurrentPage:(int)page{
     
-    int dis=(560/([pageAry count]-1)*page)+104;
+    float dis=(560*page)/([pageAry count]-1)+104;
     
     _dotButton.center=CGPointMake(dis,_dotButton.center.y);
     
     CGPoint pagePoint=CGPointMake(page*768, 0);
     [_scrollView setContentOffset:pagePoint animated:YES];
-
+    
     [self indexViewDisplay:NO];
     [self preViewDisplay:NO];
     [_bgAlpha05 setHidden:YES];
+
+
 }
 
 
@@ -353,13 +395,25 @@
 #pragma mark - scroll view delegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    
-    [self topViewDisplay:NO];
-    [self bottomViewDisplay:NO];
-    [self indexViewDisplay:NO];
-    [self preViewDisplay:NO];
-    [_bgAlpha05 setHidden:YES];
+    if([_bgAlpha05 isHidden]){
+        [self topViewDisplay:NO];
+        [self bottomViewDisplay:NO];
+        [self indexViewDisplay:NO];
+        [self preViewDisplay:NO];
+        [_bgAlpha05 setHidden:YES];
+    }
 }
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    currentPage=floor(_scrollView.contentOffset.x/768);
+    float dis=(560*currentPage)/([pageAry count]-1)+104;
+    _dotButton.center=CGPointMake(dis,_dotButton.center.y);
+    [historyAry insertObject:[NSNumber numberWithInt:currentPage] atIndex:[historyAry count]];
+    
+}
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+    //NSLog(@"scrollViewDidEndScrollingAnimation");
+}
+
 
 
 #pragma mark - Table view data source
@@ -392,10 +446,9 @@
     }
     
     NSDictionary *cellDic=[indexAry objectAtIndex:indexPath.row];
-    
-    //NSString *filename = [[NSBundle mainBundle] --pathForResource:[cellDic objectForKey:@"file"] ofType:nil inDirectory:@"book/indexImages"];
     MagazineManager *manager = [MagazineManager sharedInstance];
-    NSString *filename =  [manager.currentIssuePath stringByAppendingPathComponent:[NSString stringWithFormat:@"indexImages/%@", [cellDic objectForKey:@"file"]]];
+    //NSString *filename = [[NSBundle mainBundle] pathForResource:[cellDic objectForKey:@"file"] ofType:nil inDirectory:@"book/indexImages"];
+    NSString *filename = [[manager.currentIssuePath stringByAppendingPathComponent:@"indexImages"] stringByAppendingPathComponent:[cellDic objectForKey:@"file"]];
     UIImage *cellImage=[UIImage imageWithContentsOfFile:filename];
     //UIImageView *cellImageView=[[UIImageView alloc] initWithFrame:CGRectMake(25, 25, 70, 70)];
     [cell.cellImageView setImage:cellImage];
@@ -452,7 +505,10 @@
     
     NSDictionary *dic=[indexAry objectAtIndex:indexPath.row];
     int jumpNo=[[dic objectForKey:@"pageNo"] intValue];
+    currentPage=jumpNo;
+    [historyAry insertObject:[NSNumber numberWithInt:currentPage] atIndex:[historyAry count]];
     [self gotoCurrentPage:jumpNo];
+    
     
     [self topViewDisplay:NO];
     [self bottomViewDisplay:NO];

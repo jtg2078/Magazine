@@ -14,6 +14,7 @@
     NSMutableArray *pageAry;
     NSMutableArray *indexAry;
     int currentPage;
+    NSMutableArray *historyAry;
 }
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UIView *topView;
@@ -32,9 +33,13 @@
 
 @property (retain, nonatomic) NSMutableArray *pageAry;
 @property (retain, nonatomic) NSMutableArray *indexAry;
+@property (retain, nonatomic) NSMutableArray *historyAry;
 @property (assign, nonatomic) IBOutlet IndexCell *indexCell;
+@property (retain, nonatomic) IBOutlet UIButton *historyButton;
+@property (retain, nonatomic) IBOutlet UIButton *infoButton;
+- (IBAction)prevPage:(id)sender;
+- (IBAction)openStores:(id)sender;
 
-- (IBAction)homeButtonPressed:(id)sender;
 
 - (void)touchDragInside:(id)sender withEvent:(UIEvent *)event;
 - (IBAction)tapGesture:(id)sender;

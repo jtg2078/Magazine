@@ -14,17 +14,14 @@
 @end
 
 @implementation WebViewController
-@synthesize pageAry;
-@synthesize jumpDelegate;
-@synthesize myUrl;
+@synthesize myURL;
 
 
--(id)initWithAry:(NSArray *)ary{
+-(id)initWithUrl:(NSString *)url{
     
     self = [super initWithNibName:@"WebViewController" bundle:nil];
     if (self) {
-        // Custom initialization
-        pageAry=ary;
+        myURL=url;
     }
     return self;
 }
@@ -43,46 +40,15 @@
 {
     [super viewDidLoad];
     
-    NSDictionary *dic=[pageAry objectAtIndex:0];
-    
-    //NSString *htmlFile = [[NSBundle mainBundle] --pathForResource:[dic objectForKey:@"file"] ofType:nil inDirectory:@"book"];
-    
-    MagazineManager *manager = [MagazineManager sharedInstance];
-    
-    NSString *htmlFile = [manager.currentIssuePath stringByAppendingPathComponent:[dic objectForKey:@"file"]];
-    
-    NSData *htmlData = [NSData dataWithContentsOfFile:htmlFile];
-    
-    //NSURL *baseUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] --pathForResource:@"fashionshow_women" ofType:@"html" inDirectory:@"book"]];
-    
-    NSString *urlPath = [manager.currentIssuePath stringByAppendingPathComponent:@"fashionshow_women.html"];
-    NSURL *baseUrl = [NSURL fileURLWithPath:urlPath];
-    
-    [_webView loadData:htmlData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:baseUrl];
-    [self.view addSubview:_webView];
-    
-    //UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 1024*i, 768, 1024)];
-    //[imageView setImage:image];
-    //[_scrollView addSubview:imageView];
-    
-
-    // Do any additional setup after loading the view from its nib.
+    NSURL* url = [NSURL URLWithString:myURL];
+    NSURLRequest* urlReq = [ NSURLRequest requestWithURL:url ];
+    [_webView loadRequest: urlReq ];
 }
 
 - (BOOL)            webView: (UIWebView *) view
  shouldStartLoadWithRequest: (NSURLRequest *) req
              navigationType: (UIWebViewNavigationType) navType
 {
-    
-    //NSLog(@"contentHeight:%f",contentHeight);
-    NSLog(@"%@",[[req URL] host]);
-    myUrl=[[req URL] host];
-    NSString *hostStr=[[req URL] host];
-    if([hostStr isEqualToString:@"www.youtube.com"] || [hostStr isEqualToString:@"player.vimeo.com"]){
-        YoutubeViewController *youtube=[[YoutubeViewController alloc] initWithUrl:[[req URL] absoluteString]];
-        [self presentViewController:youtube animated:YES completion:nil];
-        return NO;
-    }
     
     return YES;
 }
@@ -106,6 +72,12 @@
 
 - (void)dealloc {
     [_webView release];
+    [_closeButton release];
     [super dealloc];
 }
+- (IBAction)close:(id)sender {
+    [_webView loadHTMLString:@"x" baseURL:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end
+

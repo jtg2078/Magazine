@@ -15,7 +15,6 @@
 			<string>IBUIButton</string>
 			<string>IBUIImageView</string>
 			<string>IBUILabel</string>
-			<string>IBUIPinchGestureRecognizer</string>
 			<string>IBUIScrollView</string>
 			<string>IBUITableView</string>
 			<string>IBUITapGestureRecognizer</string>
@@ -55,6 +54,7 @@
 						<array key="IBUIGestureRecognizers" id="0"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<bool key="IBUIPagingEnabled">YES</bool>
+						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 						<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
 						<bool key="IBUICanCancelContentTouches">NO</bool>
 						<bool key="IBUIBouncesZoom">NO</bool>
@@ -72,6 +72,7 @@
 							<bytes key="NSWhite">MAA</bytes>
 						</object>
 						<float key="IBUIAlpha">0.5</float>
+						<reference key="IBUIGestureRecognizers" ref="0"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
 					<object class="IBUIView" id="780140714">
@@ -508,7 +509,6 @@
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
 			<object class="IBUITapGestureRecognizer" id="53334139"/>
-			<object class="IBUIPinchGestureRecognizer" id="153779280"/>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<array class="NSMutableArray" key="connectionRecords">
@@ -634,11 +634,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="388735892"/>
-						<reference key="destination" ref="841351856"/>
+						<string key="label">historyButton</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="142472395"/>
 					</object>
-					<int key="connectionID">11</int>
+					<int key="connectionID">94</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">infoButton</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="231642068"/>
+					</object>
+					<int key="connectionID">96</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletCollectionConnection" key="connection">
@@ -648,16 +656,24 @@
 						<string key="cachedDesigntimeCollectionClassName">NSArray</string>
 						<bool key="addsContentToExistingCollection">YES</bool>
 					</object>
-					<int key="connectionID">70</int>
+					<int key="connectionID">90</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="388735892"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">93</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">homeButtonPressed:</string>
-						<reference key="source" ref="440126935"/>
+						<string key="label">prevPage:</string>
+						<reference key="source" ref="142472395"/>
 						<reference key="destination" ref="841351856"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">75</int>
+					<int key="connectionID">95</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -669,20 +685,13 @@
 					<int key="connectionID">66</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="53334139"/>
-						<reference key="destination" ref="841351856"/>
-					</object>
-					<int key="connectionID">29</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">tapGesture:</string>
-						<reference key="source" ref="53334139"/>
+						<string key="label">openStores:</string>
+						<reference key="source" ref="231642068"/>
 						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">30</int>
+					<int key="connectionID">97</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -739,30 +748,28 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletCollectionConnection" key="connection">
 						<string key="label">gestureRecognizers</string>
-						<reference key="source" ref="780140714"/>
-						<reference key="destination" ref="153779280"/>
-						<string key="cachedDesigntimeCollectionClassName">NSArray</string>
-						<bool key="addsContentToExistingCollection">YES</bool>
-					</object>
-					<int key="connectionID">73</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletCollectionConnection" key="connection">
-						<string key="label">gestureRecognizers</string>
 						<reference key="source" ref="964181222"/>
 						<reference key="destination" ref="53334139"/>
 						<string key="cachedDesigntimeCollectionClassName">NSArray</string>
 						<bool key="addsContentToExistingCollection">YES</bool>
 					</object>
-					<int key="connectionID">71</int>
+					<int key="connectionID">92</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
-						<reference key="source" ref="153779280"/>
+						<reference key="source" ref="53334139"/>
 						<reference key="destination" ref="841351856"/>
 					</object>
-					<int key="connectionID">74</int>
+					<int key="connectionID">87</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">tapGesture:</string>
+						<reference key="source" ref="53334139"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">89</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -842,11 +849,6 @@
 						<int key="objectID">18</int>
 						<reference key="object" ref="231642068"/>
 						<reference key="parent" ref="379256313"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">27</int>
-						<reference key="object" ref="53334139"/>
-						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">31</int>
@@ -936,11 +938,12 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">60</int>
 						<reference key="object" ref="964181222"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="766721923"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">72</int>
-						<reference key="object" ref="153779280"/>
+						<int key="objectID">85</int>
+						<reference key="object" ref="53334139"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</array>
@@ -959,7 +962,6 @@
 				<real value="0.0" key="17.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="33.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -975,13 +977,13 @@
 				<string key="58.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="59.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="60.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="85.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">75</int>
+			<int key="maxID">97</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1019,7 +1021,8 @@
 						<string key="gotoLeft:">id</string>
 						<string key="gotoPage:">id</string>
 						<string key="gotoRight:">id</string>
-						<string key="homeButtonPressed:">id</string>
+						<string key="openStores:">id</string>
+						<string key="prevPage:">id</string>
 						<string key="showIndex:">id</string>
 						<string key="tapGesture:">id</string>
 					</dictionary>
@@ -1036,8 +1039,12 @@
 							<string key="name">gotoRight:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="homeButtonPressed:">
-							<string key="name">homeButtonPressed:</string>
+						<object class="IBActionInfo" key="openStores:">
+							<string key="name">openStores:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="prevPage:">
+							<string key="name">prevPage:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="showIndex:">
@@ -1053,9 +1060,11 @@
 						<string key="bgAlpha05">UIView</string>
 						<string key="bottomView">UIView</string>
 						<string key="dotButton">UIButton</string>
+						<string key="historyButton">UIButton</string>
 						<string key="indexButton">UIButton</string>
 						<string key="indexCell">IndexCell</string>
 						<string key="indexView">UIView</string>
+						<string key="infoButton">UIButton</string>
 						<string key="leftButton">UIButton</string>
 						<string key="myTableView">UITableView</string>
 						<string key="pageSubtitle">UITextView</string>
@@ -1079,6 +1088,10 @@
 							<string key="name">dotButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="historyButton">
+							<string key="name">historyButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="indexButton">
 							<string key="name">indexButton</string>
 							<string key="candidateClassName">UIButton</string>
@@ -1090,6 +1103,10 @@
 						<object class="IBToOneOutletInfo" key="indexView">
 							<string key="name">indexView</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="infoButton">
+							<string key="name">infoButton</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="leftButton">
 							<string key="name">leftButton</string>

@@ -12,4 +12,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (void)presentViewController:(UIViewController *)modalViewController animated:(BOOL)animated;
+
 @end

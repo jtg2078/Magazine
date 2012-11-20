@@ -15,8 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        
-        NSLog(@"init");
+    
     }
     return self;
 }
@@ -36,13 +35,30 @@
     [_scrollImage release];
     [_infoImageButton release];
     [_infoButton release];
+
     [super dealloc];
 }
 
--(void)setScrollDelegate{
+-(void)update:(NSDictionary *)dic{
+    MagazineManager *manager = [MagazineManager sharedInstance];
+    //NSString *backFilename = [[NSBundle mainBundle] pathForResource:[dic objectForKey:@"backImage"] ofType:nil inDirectory:@"book"];
+    NSString *backFilename = [manager.currentIssuePath stringByAppendingPathComponent:[dic objectForKey:@"backImage"]];
+    [_bImageView setImage:[UIImage imageWithContentsOfFile:backFilename]];
+    
+    //NSString *filename = [[NSBundle mainBundle] pathForResource:[dic objectForKey:@"file"] ofType:nil inDirectory:@"book"];
+    NSString *filename = [manager.currentIssuePath stringByAppendingPathComponent:[dic objectForKey:@"file"]];
+    [_scrollImage setImage:[UIImage imageWithContentsOfFile:filename]];
+    _scrollView.contentSize=CGSizeMake(1190, 333);
+    [_scrollView setContentOffset:CGPointMake(502, 0)];
+    
+    //NSString *infoFilename = [[NSBundle mainBundle] pathForResource:[dic objectForKey:@"popImage"] ofType:nil inDirectory:@"book"];
+    NSString *infoFilename = [manager.currentIssuePath stringByAppendingPathComponent:[dic objectForKey:@"popImage"]];
+    [_infoImageButton setImage:[UIImage imageWithContentsOfFile:infoFilename] forState:UIControlStateNormal];
     _scrollView.delegate=self;
     [_infoImageButton setAlpha:0];
+    
 }
+
 #pragma mark - scroll view delegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
@@ -53,7 +69,7 @@
     
     if(_infoImageButton.frame.origin.y<186){
         [self popImageDisplay:YES];
-        [_scrollView setContentOffset:CGPointMake(570, 0) animated:YES];
+        [_scrollView setContentOffset:CGPointMake(502, 0) animated:YES];
     }else{
         [self popImageDisplay:NO];
     }

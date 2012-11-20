@@ -143,7 +143,7 @@
 {
     NSString *issueName = [self.manager nameOfIssueAtIndex:indexPath.row];
     NKIssue *issue = [self.library issueWithName:issueName];
-    NSString *magazineName = @"團團雜誌";
+    NSString *magazineName = @"團團誌";
     NSString *issueTitle = [self.manager titleOfIssueAtIndex:indexPath.row];
     
     if(issue.status == NKIssueContentStatusNone)

@@ -55,12 +55,12 @@
         NSDictionary *dic=[pageAry objectAtIndex:i];
         
         if(![[dic objectForKey:@"backImage"] isEqualToString:@""]){
-            //NSString *backFilename = [[NSBundle mainBundle] --pathForResource:[dic objectForKey:@"backImage"] ofType:nil inDirectory:@"book"];
+            //NSString *backFilename = [[NSBundle mainBundle] pathForResource:[dic objectForKey:@"backImage"] ofType:nil inDirectory:@"book"];
             NSString *backFilename = [manager.currentIssuePath stringByAppendingPathComponent:[dic objectForKey:@"backImage"]];
             [_backImage setImage:[UIImage imageWithContentsOfFile:backFilename]];
         }
         
-        //NSString *filename = [[NSBundle mainBundle] --pathForResource:[dic objectForKey:@"file"] ofType:nil inDirectory:@"book"];
+        //NSString *filename = [[NSBundle mainBundle] pathForResource:[dic objectForKey:@"file"] ofType:nil inDirectory:@"book"];
         NSString *filename = [manager.currentIssuePath stringByAppendingPathComponent:[dic objectForKey:@"file"]];
         UIImage *image=[UIImage imageWithContentsOfFile:filename];
         
@@ -71,7 +71,7 @@
         
         if([[dic objectForKey:@"type"] isEqualToString:@"imageH"]){
             
-            imageView=[[UIImageView alloc] initWithFrame:CGRectMake(totalWidth, 0, pageWidth, pageHeight)];
+            imageView=[[[UIImageView alloc] initWithFrame:CGRectMake(totalWidth, 0, pageWidth, pageHeight)] autorelease];
             
             totalHeight=pageHeight;
             totalWidth=totalWidth+pageWidth;

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseCell.h"
 
-@interface BuyingNoteCell : UITableViewCell<UIScrollViewDelegate>{
+@interface BuyingNoteCell : BaseCell<UIScrollViewDelegate>{
     
 }
 @property (retain, nonatomic) IBOutlet UIImageView *bImageView;
@@ -16,7 +17,12 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UIButton *infoImageButton;
 @property (retain, nonatomic) IBOutlet UIButton *infoButton;
+
+
+
+
+
 - (IBAction)openInfo:(id)sender;
+-(void)update:(NSDictionary *)dic;
 -(void)popImageDisplay:(BOOL)show;
--(void)setScrollDelegate;
 @end

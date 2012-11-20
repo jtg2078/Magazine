@@ -57,6 +57,37 @@
 		964F48E3164A265600A6D09E /* bg_bookshelf.png in Resources */ = {isa = PBXBuildFile; fileRef = 964F48E2164A265600A6D09E /* bg_bookshelf.png */; };
 		964F48F8164A507800A6D09E /* catalog.plist in Resources */ = {isa = PBXBuildFile; fileRef = 964F48F7164A507800A6D09E /* catalog.plist */; };
 		964F4916164A767E00A6D09E /* bookCover_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 964F4915164A767E00A6D09E /* bookCover_large.png */; };
+		9668B7F8165BB0DA00EA424A /* video_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B7F4165BB0DA00EA424A /* video_b.png */; };
+		9668B7F9165BB0DA00EA424A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B7F5165BB0DA00EA424A /* Default-568h@2x.png */; };
+		9668B7FA165BB0DA00EA424A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B7F6165BB0DA00EA424A /* Default.png */; };
+		9668B7FB165BB0DA00EA424A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B7F7165BB0DA00EA424A /* Default@2x.png */; };
+		9668B804165BB0E700EA424A /* btnBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B7FD165BB0E700EA424A /* btnBg.png */; };
+		9668B805165BB0E700EA424A /* Camper_SeasonNews.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B7FE165BB0E700EA424A /* Camper_SeasonNews.png */; };
+		9668B806165BB0E700EA424A /* w_video_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B7FF165BB0E700EA424A /* w_video_b.png */; };
+		9668B807165BB0E700EA424A /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B800165BB0E700EA424A /* backArrow.png */; };
+		9668B808165BB0E700EA424A /* close_B.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B801165BB0E700EA424A /* close_B.png */; };
+		9668B809165BB0E700EA424A /* photo_B.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B802165BB0E700EA424A /* photo_B.png */; };
+		9668B80A165BB0E700EA424A /* 說明_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B803165BB0E700EA424A /* 說明_1.png */; };
+		9668B829165BB10F00EA424A /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9668B80B165BB10F00EA424A /* SocialViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9668B82A165BB10F00EA424A /* LinkBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 9668B80C165BB10F00EA424A /* LinkBtn.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9668B82B165BB10F00EA424A /* VideoBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 9668B80E165BB10F00EA424A /* VideoBtn.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9668B82C165BB10F00EA424A /* FashionShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9668B810165BB10F00EA424A /* FashionShowViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9668B82D165BB10F00EA424A /* SocialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9668B811165BB10F00EA424A /* SocialViewController.xib */; };
+		9668B82E165BB10F00EA424A /* PageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9668B812165BB10F00EA424A /* PageCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9668B82F165BB10F00EA424A /* StoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9668B813165BB10F00EA424A /* StoresViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9668B830165BB10F00EA424A /* StoresViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9668B814165BB10F00EA424A /* StoresViewController.xib */; };
+		9668B831165BB10F00EA424A /* SeasonNewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9668B816165BB10F00EA424A /* SeasonNewsCell.xib */; };
+		9668B832165BB10F00EA424A /* SeasonNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9668B817165BB10F00EA424A /* SeasonNewsCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9668B833165BB10F00EA424A /* PlayMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9668B819165BB10F00EA424A /* PlayMovieViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9668B834165BB10F00EA424A /* CamperMapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9668B81B165BB10F00EA424A /* CamperMapCell.xib */; };
+		9668B835165BB10F00EA424A /* CamperMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9668B81C165BB10F00EA424A /* CamperMapCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9668B836165BB10F00EA424A /* CamperMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9668B81D165BB10F00EA424A /* CamperMapViewController.xib */; };
+		9668B837165BB10F00EA424A /* PlayMovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9668B81E165BB10F00EA424A /* PlayMovieViewController.xib */; };
+		9668B838165BB10F00EA424A /* FashionShowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9668B820165BB10F00EA424A /* FashionShowViewController.xib */; };
+		9668B839165BB10F00EA424A /* CamperMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9668B823165BB10F00EA424A /* CamperMapViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9668B83A165BB10F00EA424A /* PageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9668B827165BB10F00EA424A /* PageCell.xib */; };
+		9668B83B165BB10F00EA424A /* BaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9668B828165BB10F00EA424A /* BaseCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9668B83D165BB1AC00EA424A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9668B83C165BB1AC00EA424A /* MediaPlayer.framework */; };
 		9675C88016562EBE00522E0D /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 9675C87616562EBE00522E0D /* ioapi.c */; };
 		9675C88116562EBE00522E0D /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 9675C87816562EBE00522E0D /* mztools.c */; };
 		9675C88216562EBE00522E0D /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 9675C87A16562EBE00522E0D /* unzip.c */; };
@@ -170,6 +201,48 @@
 		964F48E2164A265600A6D09E /* bg_bookshelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_bookshelf.png; sourceTree = "<group>"; };
 		964F48F7164A507800A6D09E /* catalog.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = catalog.plist; sourceTree = "<group>"; };
 		964F4915164A767E00A6D09E /* bookCover_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookCover_large.png; sourceTree = "<group>"; };
+		9668B7F4165BB0DA00EA424A /* video_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video_b.png; sourceTree = "<group>"; };
+		9668B7F5165BB0DA00EA424A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		9668B7F6165BB0DA00EA424A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		9668B7F7165BB0DA00EA424A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		9668B7FD165BB0E700EA424A /* btnBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnBg.png; sourceTree = "<group>"; };
+		9668B7FE165BB0E700EA424A /* Camper_SeasonNews.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Camper_SeasonNews.png; sourceTree = "<group>"; };
+		9668B7FF165BB0E700EA424A /* w_video_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = w_video_b.png; sourceTree = "<group>"; };
+		9668B800165BB0E700EA424A /* backArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrow.png; sourceTree = "<group>"; };
+		9668B801165BB0E700EA424A /* close_B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_B.png; sourceTree = "<group>"; };
+		9668B802165BB0E700EA424A /* photo_B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_B.png; sourceTree = "<group>"; };
+		9668B803165BB0E700EA424A /* 說明_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "說明_1.png"; sourceTree = "<group>"; };
+		9668B80B165BB10F00EA424A /* SocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialViewController.m; sourceTree = "<group>"; };
+		9668B80C165BB10F00EA424A /* LinkBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkBtn.m; sourceTree = "<group>"; };
+		9668B80D165BB10F00EA424A /* SocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialViewController.h; sourceTree = "<group>"; };
+		9668B80E165BB10F00EA424A /* VideoBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoBtn.m; sourceTree = "<group>"; };
+		9668B80F165BB10F00EA424A /* LinkBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkBtn.h; sourceTree = "<group>"; };
+		9668B810165BB10F00EA424A /* FashionShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FashionShowViewController.m; sourceTree = "<group>"; };
+		9668B811165BB10F00EA424A /* SocialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialViewController.xib; sourceTree = "<group>"; };
+		9668B812165BB10F00EA424A /* PageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCell.m; sourceTree = "<group>"; };
+		9668B813165BB10F00EA424A /* StoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoresViewController.m; sourceTree = "<group>"; };
+		9668B814165BB10F00EA424A /* StoresViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoresViewController.xib; sourceTree = "<group>"; };
+		9668B815165BB10F00EA424A /* StoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoresViewController.h; sourceTree = "<group>"; };
+		9668B816165BB10F00EA424A /* SeasonNewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeasonNewsCell.xib; sourceTree = "<group>"; };
+		9668B817165BB10F00EA424A /* SeasonNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeasonNewsCell.m; sourceTree = "<group>"; };
+		9668B818165BB10F00EA424A /* PlayMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayMovieViewController.h; sourceTree = "<group>"; };
+		9668B819165BB10F00EA424A /* PlayMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayMovieViewController.m; sourceTree = "<group>"; };
+		9668B81A165BB10F00EA424A /* SeasonNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeasonNewsCell.h; sourceTree = "<group>"; };
+		9668B81B165BB10F00EA424A /* CamperMapCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CamperMapCell.xib; sourceTree = "<group>"; };
+		9668B81C165BB10F00EA424A /* CamperMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CamperMapCell.m; sourceTree = "<group>"; };
+		9668B81D165BB10F00EA424A /* CamperMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CamperMapViewController.xib; sourceTree = "<group>"; };
+		9668B81E165BB10F00EA424A /* PlayMovieViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayMovieViewController.xib; sourceTree = "<group>"; };
+		9668B81F165BB10F00EA424A /* FashionShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FashionShowViewController.h; sourceTree = "<group>"; };
+		9668B820165BB10F00EA424A /* FashionShowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FashionShowViewController.xib; sourceTree = "<group>"; };
+		9668B821165BB10F00EA424A /* VideoBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoBtn.h; sourceTree = "<group>"; };
+		9668B822165BB10F00EA424A /* BaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCell.h; sourceTree = "<group>"; };
+		9668B823165BB10F00EA424A /* CamperMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CamperMapViewController.m; sourceTree = "<group>"; };
+		9668B824165BB10F00EA424A /* CamperMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CamperMapViewController.h; sourceTree = "<group>"; };
+		9668B825165BB10F00EA424A /* CamperMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CamperMapCell.h; sourceTree = "<group>"; };
+		9668B826165BB10F00EA424A /* PageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageCell.h; sourceTree = "<group>"; };
+		9668B827165BB10F00EA424A /* PageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageCell.xib; sourceTree = "<group>"; };
+		9668B828165BB10F00EA424A /* BaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCell.m; sourceTree = "<group>"; };
+		9668B83C165BB1AC00EA424A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		9675C87516562EBE00522E0D /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		9675C87616562EBE00522E0D /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		9675C87716562EBE00522E0D /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -233,6 +306,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9668B83D165BB1AC00EA424A /* MediaPlayer.framework in Frameworks */,
 				964F48CD16497DA000A6D09E /* libz.dylib in Frameworks */,
 				964F48941649443400A6D09E /* SystemConfiguration.framework in Frameworks */,
 				964F488E164943F500A6D09E /* Security.framework in Frameworks */,
@@ -279,6 +353,7 @@
 				964F48091648F9E900A6D09E /* CoreGraphics.framework */,
 				964F48071648F9E900A6D09E /* Foundation.framework */,
 				964F48CC16497DA000A6D09E /* libz.dylib */,
+				9668B83C165BB1AC00EA424A /* MediaPlayer.framework */,
 				964F48851649423800A6D09E /* MobileCoreServices.framework */,
 				964F48571649373D00A6D09E /* NewsstandKit.framework */,
 				964F488D164943F500A6D09E /* Security.framework */,
@@ -455,18 +530,34 @@
 		96E3A163164BB1EE001DEF64 /* Reader */ = {
 			isa = PBXGroup;
 			children = (
+				9668B822165BB10F00EA424A /* BaseCell.h */,
+				9668B828165BB10F00EA424A /* BaseCell.m */,
 				96E3A164164BB1EE001DEF64 /* BrandCell.h */,
 				96E3A165164BB1EE001DEF64 /* BrandCell.m */,
 				96E3A166164BB1EE001DEF64 /* BrandCell.xib */,
 				96E3A167164BB1EE001DEF64 /* BuyingNoteCell.h */,
 				96E3A168164BB1EE001DEF64 /* BuyingNoteCell.m */,
 				96E3A169164BB1EE001DEF64 /* BuyingNoteCell.xib */,
+				9668B825165BB10F00EA424A /* CamperMapCell.h */,
+				9668B81C165BB10F00EA424A /* CamperMapCell.m */,
+				9668B81B165BB10F00EA424A /* CamperMapCell.xib */,
+				9668B824165BB10F00EA424A /* CamperMapViewController.h */,
+				9668B823165BB10F00EA424A /* CamperMapViewController.m */,
+				9668B81D165BB10F00EA424A /* CamperMapViewController.xib */,
+				9668B81F165BB10F00EA424A /* FashionShowViewController.h */,
+				9668B810165BB10F00EA424A /* FashionShowViewController.m */,
+				9668B820165BB10F00EA424A /* FashionShowViewController.xib */,
 				96E3A16A164BB1EE001DEF64 /* HTViewController.h */,
 				96E3A16B164BB1EE001DEF64 /* HTViewController.m */,
 				96E3A16C164BB1EE001DEF64 /* HTViewController.xib */,
 				96E3A16D164BB1EE001DEF64 /* IndexCell.h */,
 				96E3A16E164BB1EE001DEF64 /* IndexCell.m */,
 				96E3A16F164BB1EE001DEF64 /* IndexCell.xib */,
+				9668B80F165BB10F00EA424A /* LinkBtn.h */,
+				9668B80C165BB10F00EA424A /* LinkBtn.m */,
+				9668B826165BB10F00EA424A /* PageCell.h */,
+				9668B812165BB10F00EA424A /* PageCell.m */,
+				9668B827165BB10F00EA424A /* PageCell.xib */,
 				96E3A170164BB1EE001DEF64 /* PageHViewController.h */,
 				96E3A171164BB1EE001DEF64 /* PageHViewController.m */,
 				96E3A172164BB1EE001DEF64 /* PageHViewController.xib */,
@@ -474,9 +565,23 @@
 				96E3A174164BB1EE001DEF64 /* PageViewController.h */,
 				96E3A175164BB1EE001DEF64 /* PageViewController.m */,
 				96E3A176164BB1EE001DEF64 /* PageViewController.xib */,
+				9668B818165BB10F00EA424A /* PlayMovieViewController.h */,
+				9668B819165BB10F00EA424A /* PlayMovieViewController.m */,
+				9668B81E165BB10F00EA424A /* PlayMovieViewController.xib */,
 				96E3A177164BB1EE001DEF64 /* RootViewController.h */,
 				96E3A178164BB1EE001DEF64 /* RootViewController.m */,
 				96E3A179164BB1EE001DEF64 /* RootViewController.xib */,
+				9668B81A165BB10F00EA424A /* SeasonNewsCell.h */,
+				9668B817165BB10F00EA424A /* SeasonNewsCell.m */,
+				9668B816165BB10F00EA424A /* SeasonNewsCell.xib */,
+				9668B80D165BB10F00EA424A /* SocialViewController.h */,
+				9668B80B165BB10F00EA424A /* SocialViewController.m */,
+				9668B811165BB10F00EA424A /* SocialViewController.xib */,
+				9668B815165BB10F00EA424A /* StoresViewController.h */,
+				9668B813165BB10F00EA424A /* StoresViewController.m */,
+				9668B814165BB10F00EA424A /* StoresViewController.xib */,
+				9668B821165BB10F00EA424A /* VideoBtn.h */,
+				9668B80E165BB10F00EA424A /* VideoBtn.m */,
 				96E3A17A164BB1EE001DEF64 /* WebViewController.h */,
 				96E3A17B164BB1EE001DEF64 /* WebViewController.m */,
 				96E3A17C164BB1EE001DEF64 /* WebViewController.xib */,
@@ -492,7 +597,14 @@
 			children = (
 				96E3A194164BB205001DEF64 /* 55.png */,
 				96E3A195164BB205001DEF64 /* back.png */,
+				9668B800165BB0E700EA424A /* backArrow.png */,
 				96E3A196164BB205001DEF64 /* bottom.png */,
+				9668B7FD165BB0E700EA424A /* btnBg.png */,
+				9668B7FE165BB0E700EA424A /* Camper_SeasonNews.png */,
+				9668B801165BB0E700EA424A /* close_B.png */,
+				9668B7F5165BB0DA00EA424A /* Default-568h@2x.png */,
+				9668B7F6165BB0DA00EA424A /* Default.png */,
+				9668B7F7165BB0DA00EA424A /* Default@2x.png */,
 				96E3A197164BB205001DEF64 /* dot.png */,
 				96E3A198164BB205001DEF64 /* down_page.png */,
 				96E3A199164BB205001DEF64 /* home.png */,
@@ -500,11 +612,15 @@
 				96E3A19B164BB205001DEF64 /* info.png */,
 				96E3A19C164BB205001DEF64 /* info_buttom.png */,
 				96E3A19D164BB205001DEF64 /* leftArrow.png */,
+				9668B802165BB0E700EA424A /* photo_B.png */,
 				96E3A19E164BB205001DEF64 /* rightArrow.png */,
 				96E3A19F164BB205001DEF64 /* shadow.png */,
 				96E3A1A0164BB205001DEF64 /* slide.png */,
 				96E3A1A1164BB205001DEF64 /* temp.png */,
 				96E3A1A2164BB205001DEF64 /* topbar.png */,
+				9668B7F4165BB0DA00EA424A /* video_b.png */,
+				9668B7FF165BB0E700EA424A /* w_video_b.png */,
+				9668B803165BB0E700EA424A /* 說明_1.png */,
 			);
 			path = reader;
 			sourceTree = "<group>";
@@ -607,6 +723,25 @@
 				96E3A1AF164BB205001DEF64 /* slide.png in Resources */,
 				96E3A1B0164BB205001DEF64 /* temp.png in Resources */,
 				96E3A1B1164BB205001DEF64 /* topbar.png in Resources */,
+				9668B7F8165BB0DA00EA424A /* video_b.png in Resources */,
+				9668B7F9165BB0DA00EA424A /* Default-568h@2x.png in Resources */,
+				9668B7FA165BB0DA00EA424A /* Default.png in Resources */,
+				9668B7FB165BB0DA00EA424A /* Default@2x.png in Resources */,
+				9668B804165BB0E700EA424A /* btnBg.png in Resources */,
+				9668B805165BB0E700EA424A /* Camper_SeasonNews.png in Resources */,
+				9668B806165BB0E700EA424A /* w_video_b.png in Resources */,
+				9668B807165BB0E700EA424A /* backArrow.png in Resources */,
+				9668B808165BB0E700EA424A /* close_B.png in Resources */,
+				9668B809165BB0E700EA424A /* photo_B.png in Resources */,
+				9668B80A165BB0E700EA424A /* 說明_1.png in Resources */,
+				9668B82D165BB10F00EA424A /* SocialViewController.xib in Resources */,
+				9668B830165BB10F00EA424A /* StoresViewController.xib in Resources */,
+				9668B831165BB10F00EA424A /* SeasonNewsCell.xib in Resources */,
+				9668B834165BB10F00EA424A /* CamperMapCell.xib in Resources */,
+				9668B836165BB10F00EA424A /* CamperMapViewController.xib in Resources */,
+				9668B837165BB10F00EA424A /* PlayMovieViewController.xib in Resources */,
+				9668B838165BB10F00EA424A /* FashionShowViewController.xib in Resources */,
+				9668B83A165BB10F00EA424A /* PageCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,6 +785,17 @@
 				9675C88216562EBE00522E0D /* unzip.c in Sources */,
 				9675C88316562EBE00522E0D /* zip.c in Sources */,
 				9675C88416562EBE00522E0D /* SSZipArchive.m in Sources */,
+				9668B829165BB10F00EA424A /* SocialViewController.m in Sources */,
+				9668B82A165BB10F00EA424A /* LinkBtn.m in Sources */,
+				9668B82B165BB10F00EA424A /* VideoBtn.m in Sources */,
+				9668B82C165BB10F00EA424A /* FashionShowViewController.m in Sources */,
+				9668B82E165BB10F00EA424A /* PageCell.m in Sources */,
+				9668B82F165BB10F00EA424A /* StoresViewController.m in Sources */,
+				9668B832165BB10F00EA424A /* SeasonNewsCell.m in Sources */,
+				9668B833165BB10F00EA424A /* PlayMovieViewController.m in Sources */,
+				9668B835165BB10F00EA424A /* CamperMapCell.m in Sources */,
+				9668B839165BB10F00EA424A /* CamperMapViewController.m in Sources */,
+				9668B83B165BB10F00EA424A /* BaseCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

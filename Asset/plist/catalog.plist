@@ -12,7 +12,7 @@
 		<key>cover</key>
 		<string>https://www.dropbox.com/s/0zizxjjg8l39k4g/cover_newsstand.png</string>
 		<key>content</key>
-		<string>https://dl.dropbox.com/u/60296373/Magazine/0/book.zip</string>
+		<string>http://static.dbx.tw/pcc/book.zip</string>
 	</dict>
 	<dict>
 		<key>name</key>
@@ -24,7 +24,7 @@
 		<key>cover</key>
 		<string>https://www.dropbox.com/s/0zizxjjg8l39k4g/cover_newsstand.png</string>
 		<key>content</key>
-		<string>https://dl.dropbox.com/u/60296373/Magazine/1/book.zip</string>
+		<string>http://static.dbx.tw/pcc/book.zip</string>
 	</dict>
 	<dict>
 		<key>name</key>
@@ -36,7 +36,7 @@
 		<key>cover</key>
 		<string>https://www.dropbox.com/s/0zizxjjg8l39k4g/cover_newsstand.png</string>
 		<key>content</key>
-		<string>https://dl.dropbox.com/u/60296373/Magazine/2/book.zip</string>
+		<string>http://static.dbx.tw/pcc/book.zip</string>
 	</dict>
 	<dict>
 		<key>name</key>
@@ -48,7 +48,7 @@
 		<key>cover</key>
 		<string>https://www.dropbox.com/s/0zizxjjg8l39k4g/cover_newsstand.png</string>
 		<key>content</key>
-		<string>https://dl.dropbox.com/u/60296373/Magazine/3/book.zip</string>
+		<string>http://static.dbx.tw/pcc/book.zip</string>
 	</dict>
 </array>
 </plist>

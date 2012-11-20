@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseCell.h"
 
-@interface BrandCell : UITableViewCell
+@interface BrandCell : BaseCell{
+    NSDictionary *myDic;
+    UIScrollView *scrollview;
+    
+}
+@property (retain, nonatomic) NSDictionary *myDic;
+@property (retain, nonatomic) IBOutlet UIImageView *bImageView;
+@property (retain, nonatomic) IBOutlet UIButton *infoButton;
+@property (assign, nonatomic) UIScrollView *scrollview;
 
+- (IBAction)popDisplay:(id)sender;
+-(void)update:(NSDictionary *)dic;
+-(void)closePopDisplay:(id)sender;
 @end

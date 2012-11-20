@@ -10,17 +10,16 @@
 #import "PageJump.h"
 
 @interface WebViewController : UIViewController<UIWebViewDelegate>{
-    NSArray *pageAry;
-    id<PageJump> jumpDelegate;
+    NSString *myURL;
     
-    NSString *myUrl;
 }
 
 @property (retain, nonatomic) IBOutlet UIWebView *webView;
-@property (retain, nonatomic) NSArray *pageAry;
-@property (retain, nonatomic) id<PageJump> jumpDelegate;
-@property (retain, nonatomic) NSString *myUrl;
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *closeButton;
+@property (retain, nonatomic) NSString *myURL;
 
--(id)initWithAry:(NSArray *)ary;
 
+-(id)initWithUrl:(NSString *)url;
+
+- (IBAction)close:(id)sender;
 @end

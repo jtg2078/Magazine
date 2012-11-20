@@ -54,7 +54,6 @@
              navigationType: (UIWebViewNavigationType) navType
 {
     
-    NSLog(@"%@",[[req URL] absoluteString]);
     return YES;
 }
 

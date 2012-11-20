@@ -16,6 +16,7 @@
 			<string>IBUILabel</string>
 			<string>IBUITableViewCell</string>
 			<string>IBUITextView</string>
+			<string>IBUIView</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -41,6 +42,23 @@
 						<reference key="NSNextResponder" ref="682698385"/>
 						<int key="NSvFlags">256</int>
 						<array class="NSMutableArray" key="NSSubviews">
+							<object class="IBUIView" id="1007342541">
+								<reference key="NSNextResponder" ref="461902604"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrameSize">{400, 120}</string>
+								<reference key="NSSuperview" ref="461902604"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="877160068"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MQA</bytes>
+									<object class="NSColorSpace" key="NSCustomColorSpace">
+										<int key="NSID">2</int>
+									</object>
+								</object>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+							</object>
 							<object class="IBUIImageView" id="877160068">
 								<reference key="NSNextResponder" ref="461902604"/>
 								<int key="NSvFlags">292</int>
@@ -124,7 +142,7 @@
 						<string key="NSFrameSize">{400, 119}</string>
 						<reference key="NSSuperview" ref="682698385"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="877160068"/>
+						<reference key="NSNextKeyView" ref="1007342541"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="375564228"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -207,6 +225,7 @@
 							<reference ref="877160068"/>
 							<reference ref="204271447"/>
 							<reference ref="463867440"/>
+							<reference ref="1007342541"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -226,6 +245,11 @@
 						<reference key="object" ref="463867440"/>
 						<reference key="parent" ref="682698385"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">21</int>
+						<reference key="object" ref="1007342541"/>
+						<reference key="parent" ref="682698385"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -237,13 +261,14 @@
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="2.CustomClassName">IndexCell</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="21.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">20</int>
+			<int key="maxID">21</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -281,6 +306,7 @@
 						<string key="gotoLeft:">id</string>
 						<string key="gotoPage:">id</string>
 						<string key="gotoRight:">id</string>
+						<string key="noTap:">id</string>
 						<string key="showIndex:">id</string>
 						<string key="tapGesture:">id</string>
 					</dictionary>
@@ -295,6 +321,10 @@
 						</object>
 						<object class="IBActionInfo" key="gotoRight:">
 							<string key="name">gotoRight:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="noTap:">
+							<string key="name">noTap:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="showIndex:">

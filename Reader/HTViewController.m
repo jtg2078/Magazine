@@ -7,6 +7,7 @@
 //
 
 #import "HTViewController.h"
+#import "BaseCell.h"
 
 @interface HTViewController ()
 
@@ -16,8 +17,11 @@
 @synthesize pageAry;
 @synthesize buyingNoteCell;
 @synthesize brandCell;
-
-
+@synthesize pageCell;
+@synthesize seasonNewsCell;
+@synthesize camperCell;
+@synthesize typeAry;
+@synthesize type;
 
 -(id)initWithAry:(NSArray *)ary{
     
@@ -42,8 +46,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSDictionary *cellDic=[pageAry objectAtIndex:0];
+    type=[cellDic objectForKey:@"type"];
+    
+    if([pageAry count]<=2){
+        [_pageNoView setHidden:YES];
+    }else{
+        [_pageNoView setHidden:NO];
+        _currentPageNo.text=@"01";
+        
+        if([pageAry count]>10){
+            _nextPageNo.text=[NSString stringWithFormat:@"%d",[pageAry count]-1];
+        }else{
+            _nextPageNo.text=[NSString stringWithFormat:@"0%d",[pageAry count]-1];
+        }
+    }
     // Do any additional setup after loading the view from its nib.
 }
+  
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -53,52 +74,69 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [pageAry count];
+    return [pageAry count]-1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-     static NSString *CellIdentifier = @"Cell";
-     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-     if (cell == nil) {
-     cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-     }
-     
-     */
-
     
     
+    static NSString *CellIdentifier = @"Cell";
     
-    static NSString *CellIdentifier = @"NoteCell";
-    BuyingNoteCell *cell = (BuyingNoteCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        [ [NSBundle mainBundle] loadNibNamed:@"BuyingNoteCell" owner:self options:nil];
-        cell =buyingNoteCell;
-        self.buyingNoteCell=nil;
-    }
-
-    NSDictionary *cellDic=[pageAry objectAtIndex:indexPath.row];
-    MagazineManager *manager = [MagazineManager sharedInstance];
-
-    //NSString *backFilename = [[NSBundle mainBundle] --pathForResource:[cellDic objectForKey:@"backImage"] ofType:nil inDirectory:@"book"];
-    NSString *backFilename =  [manager.currentIssuePath stringByAppendingPathComponent:[cellDic objectForKey:@"backImage"]];
-    UIImage *img = [UIImage imageWithContentsOfFile:backFilename];
-    [cell.bImageView setImage:img];
-    
-    //NSString *filename = [[NSBundle mainBundle] --pathForResource:[cellDic objectForKey:@"file"] ofType:nil inDirectory:@"book"];
-    NSString *filename = [manager.currentIssuePath stringByAppendingPathComponent:[cellDic objectForKey:@"file"]];
-    [cell.scrollImage setImage:[UIImage imageWithContentsOfFile:filename]];
-        cell.scrollView.contentSize=CGSizeMake(1338, 333);
-    [cell.scrollView setContentOffset:CGPointMake(570, 0)];
-    
-    //NSString *infoFilename = [[NSBundle mainBundle] --pathForResource:[cellDic objectForKey:@"popImage"] ofType:nil inDirectory:@"book"];
-    NSString *infoFilename = [manager.currentIssuePath stringByAppendingPathComponent:[cellDic objectForKey:@"popImage"]];
-    [cell.infoImageButton setImage:[UIImage imageWithContentsOfFile:infoFilename] forState:UIControlStateNormal];
-    
-    [cell setScrollDelegate];
-    return cell;
+    BaseCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+   
+    NSDictionary *cellDic=[pageAry objectAtIndex:indexPath.row+1];
         
+    if([type isEqualToString:@"BuyingNote" ]){
+
+        cell = (BuyingNoteCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            [ [NSBundle mainBundle] loadNibNamed:@"BuyingNoteCell" owner:self options:nil];
+            cell =buyingNoteCell;
+            self.buyingNoteCell=nil;
+        }
+       
+        
+    }else if([type isEqualToString:@"NewBrand"]){
+        
+        cell = (BrandCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            [ [NSBundle mainBundle] loadNibNamed:@"BrandCell" owner:self options:nil];
+            cell =brandCell;
+            self.brandCell=nil;
+        }
+        
+    }else if([type isEqualToString:@"TrandLook"] || [type isEqualToString:@"AD"]){
+        
+        cell = (PageCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            [ [NSBundle mainBundle] loadNibNamed:@"PageCell" owner:self options:nil];
+            cell =pageCell;
+            self.pageCell=nil;
+        }
+        
+    }else if([type isEqualToString:@"SeasonNews"] ){
+        
+        cell = (SeasonNewsCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            [ [NSBundle mainBundle] loadNibNamed:@"SeasonNewsCell" owner:self options:nil];
+            cell =seasonNewsCell;
+            self.seasonNewsCell=nil;
+        }
+        
+    }else if([type isEqualToString:@"CamperMap"] ){
+        
+        cell = (CamperMapCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            [ [NSBundle mainBundle] loadNibNamed:@"CamperMapCell" owner:self options:nil];
+            cell =camperCell;
+            self.camperCell=nil;
+        }
+        
+    }
+    
+    [cell update:cellDic];
+     return cell;
 }
 
 /*
@@ -157,6 +195,27 @@
      */
     
 }
+#pragma mark - scroll view delegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    CGPoint point=[scrollView contentOffset];
+    int cPageNo=floor(point.y/1024)+1;
+    //int nPageNo=cPageNo+1;
+    if (cPageNo<10) {
+        _currentPageNo.text=[NSString stringWithFormat:@"0%d",cPageNo];
+    }else{
+        _currentPageNo.text=[NSString stringWithFormat:@"%d",cPageNo];
+    }
+
+    
+    
+    if([pageAry count]>10){
+        _nextPageNo.text=[NSString stringWithFormat:@"%d",[pageAry count]-1];
+    }else{
+        _nextPageNo.text=[NSString stringWithFormat:@"0%d",[pageAry count]-1];
+    }
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -165,6 +224,9 @@
 
 - (void)dealloc {
     [_myTableView release];
+    [_pageNoView release];
+    [_currentPageNo release];
+    [_nextPageNo release];
     [super dealloc];
 }
 @end
