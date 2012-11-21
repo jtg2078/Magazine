@@ -8,18 +8,24 @@ build/*
 # Exclude OS X folder attributes
 .DS_Store
 
-# Exclude user-specific XCode 3 and 4 files
-*.mode1
-*.mode1v3
-*.mode2v3
-*.perspective
-*.perspectivev3
+# Exclude user-specific Xcode
+.DS_Store
+build/
 *.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
 *.xcworkspace
+!default.xcworkspace
 xcuserdata
-
-# Exclude for DerivedData
-DerivedData/
+profile
+*.moved-aside
+DerivedData
+.idea/
 
 # Exclude Book content
 book/
