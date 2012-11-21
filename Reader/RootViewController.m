@@ -165,14 +165,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [super viewWillDisappear:animated];
 }
 
@@ -230,7 +227,6 @@
 
 - (IBAction)openStores:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
     StoresViewController *stores=[[[StoresViewController alloc] initWithNibName:@"StoresViewController" bundle:nil] autorelease];
     [appDelegate presentViewController:stores animated:YES];
 }
@@ -322,6 +318,11 @@
         [self indexViewDisplay:NO];
     }
     [_bgAlpha05 setHidden:![_bgAlpha05 isHidden]];
+}
+
+- (IBAction)gotoBookShelf:(id)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

@@ -267,7 +267,7 @@
         <!--Navigation Controller-->
         <scene sceneID="VCl-jg-cNQ">
             <objects>
-                <navigationController id="3CP-nj-Ydn" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="3CP-nj-Ydn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="L2w-9e-nD7">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
@@ -339,6 +339,9 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>

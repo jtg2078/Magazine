@@ -61,7 +61,6 @@
     self.pageLayout.minimumLineSpacing = 60;
     self.pageLayout.sectionInset = UIEdgeInsetsMake(0, 38, 0, 38);
     
-    
     // -------------------- tool bar --------------------
     
     self.gridViewBarButton.image = [UIImage imageNamed:@"btn_gridView_selected.png"];
@@ -80,6 +79,14 @@
     [self.manager getIssuesListSuccess:^{
         [SVProgressHUD showSuccessWithStatus:@"Success!"];
         [self.collectionView reloadData];
+        
+        // resume any failed downloads
+        NKLibrary *nkLib = [NKLibrary sharedLibrary];
+        for(NKAssetDownload *asset in [nkLib downloadingAssets])
+        {
+            [asset downloadWithDelegate:self];
+        }
+        
     } failure:^(NSString *reason, NSError *error) {
         [SVProgressHUD showErrorWithStatus:reason];
     }];
@@ -88,12 +95,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                            withAnimation:UIStatusBarAnimationFade];
+   
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                            withAnimation:UIStatusBarAnimationFade];
     [super viewWillDisappear:animated];
 }
 
@@ -109,6 +119,10 @@
     
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
                                 atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.collectionView.backgroundView.alpha = 1.0f;
+    }];
 }
 
 - (IBAction)pageViewBarButtonPressed:(id)sender
@@ -122,6 +136,10 @@
     
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
                                 atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.collectionView.backgroundView.alpha = 0.0f;
+    }];
 }
 
 #pragma mark - UICollectionView Datasource
@@ -272,15 +290,21 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)viewIssue:(NSIndexPath *)indexPath
 {
-    //[self performSegueWithIdentifier:@"goToIssueViewer" sender:self];
-    
     [SVProgressHUD showWithStatus:@"讀取中"];
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        RootViewController *rvc = [[RootViewController alloc] init];
         NSString *issueName = [self.manager nameOfIssueAtIndex:indexPath.row];
         NKIssue *issue = [self.library issueWithName:issueName];
         self.manager.currentIssuePath = [[self.manager downloadPathForIssue:issue] stringByAppendingPathComponent:@"book"];
+        
+        NSLog(@"path: %@", self.manager.currentIssuePath);
+        
+        if(DEVELOPMENT_MODE == YES)
+        {
+            self.manager.currentIssuePath = [[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"book"];
+        }
+        
+        RootViewController *rvc = [[RootViewController alloc] init];
         [self.navigationController pushViewController:rvc animated:YES];
         [SVProgressHUD dismiss];
     });
@@ -340,6 +364,9 @@ expectedTotalBytes:(long long)expectedTotalBytes
     
     id cell = [self.collectionView cellForItemAtIndexPath:indexPath];
     
+    if(cell == nil)
+        return;
+    
     if([cell isKindOfClass:[MagazineCellDownloading class]] == YES)
     {
         MagazineCellDownloading *downloadingCell = (MagazineCellDownloading *)cell;
@@ -354,7 +381,13 @@ expectedTotalBytes:(long long)expectedTotalBytes
         float downloadedInMB = 1.f * totalBytesWritten / 1000000;
         float totalMB = 1.f * expectedTotalBytes / 1000000;
         
-        downloadingCell.progressLabel.text = [NSString stringWithFormat:@" %.2f MB / %.2f MB", downloadedInMB, totalMB];
+        NSString *downloadedInMBString = [NSString stringWithFormat:@"%.2f", downloadedInMB];
+        NSString *totalMBString = [NSString stringWithFormat:@"%.2f", totalMB];
+        
+        downloadingCell.progressLabel.text = [NSString stringWithFormat:@" %@ MB / %@ MB", downloadedInMBString, totalMBString];
+        
+        if([downloadedInMBString isEqualToString:totalMBString] == YES)
+            downloadingCell.progressLabel.text = @"Processing...";
     }
     else
     {
@@ -379,15 +412,23 @@ expectedTotalBytes:(long long)expectedTotalBytes
     NKIssue *issue = assetDownload.issue;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[assetDownload.userInfo objectForKey:@"indexPathRow"] intValue] inSection:[[assetDownload.userInfo objectForKey:@"indexPathSection"] intValue]];
     
-    NSString *zipPath = [destinationURL path];
-    NSString *destinationPath = [self.manager downloadPathForIssue:issue];
-    [SSZipArchive unzipFileAtPath:zipPath toDestination:destinationPath];
-    
     id cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+    
+    if(cell == nil)
+        return;
     
     if([cell isKindOfClass:[MagazineCellDownloading class]] == YES)
     {
-        [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+        MagazineCellDownloading *downloadingCell = (MagazineCellDownloading *)cell;
+        downloadingCell.progressLabel.text = @"Processing...";
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *zipPath = [destinationURL path];
+            NSString *destinationPath = [self.manager downloadPathForIssue:issue];
+            [SSZipArchive unzipFileAtPath:zipPath toDestination:destinationPath];
+            
+            [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+        });
     }
 }
 

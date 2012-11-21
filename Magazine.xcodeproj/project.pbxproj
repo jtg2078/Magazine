@@ -57,6 +57,8 @@
 		964F48E3164A265600A6D09E /* bg_bookshelf.png in Resources */ = {isa = PBXBuildFile; fileRef = 964F48E2164A265600A6D09E /* bg_bookshelf.png */; };
 		964F48F8164A507800A6D09E /* catalog.plist in Resources */ = {isa = PBXBuildFile; fileRef = 964F48F7164A507800A6D09E /* catalog.plist */; };
 		964F4916164A767E00A6D09E /* bookCover_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 964F4915164A767E00A6D09E /* bookCover_large.png */; };
+		965A2082165CD1E2007EBB0C /* book in Resources */ = {isa = PBXBuildFile; fileRef = 965A2081165CD1E2007EBB0C /* book */; };
+		965A2086165CD3A0007EBB0C /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 965A2085165CD3A0007EBB0C /* Constant.m */; };
 		9668B7F8165BB0DA00EA424A /* video_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B7F4165BB0DA00EA424A /* video_b.png */; };
 		9668B804165BB0E700EA424A /* btnBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B7FD165BB0E700EA424A /* btnBg.png */; };
 		9668B805165BB0E700EA424A /* Camper_SeasonNews.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B7FE165BB0E700EA424A /* Camper_SeasonNews.png */; };
@@ -197,6 +199,9 @@
 		964F48E2164A265600A6D09E /* bg_bookshelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_bookshelf.png; sourceTree = "<group>"; };
 		964F48F7164A507800A6D09E /* catalog.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = catalog.plist; sourceTree = "<group>"; };
 		964F4915164A767E00A6D09E /* bookCover_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookCover_large.png; sourceTree = "<group>"; };
+		965A2081165CD1E2007EBB0C /* book */ = {isa = PBXFileReference; lastKnownFileType = folder; path = book; sourceTree = "<group>"; };
+		965A2084165CD3A0007EBB0C /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constant.h; path = Manager/Constant.h; sourceTree = SOURCE_ROOT; };
+		965A2085165CD3A0007EBB0C /* Constant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constant.m; path = Manager/Constant.m; sourceTree = SOURCE_ROOT; };
 		9668B7F4165BB0DA00EA424A /* video_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video_b.png; sourceTree = "<group>"; };
 		9668B7FD165BB0E700EA424A /* btnBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnBg.png; sourceTree = "<group>"; };
 		9668B7FE165BB0E700EA424A /* Camper_SeasonNews.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Camper_SeasonNews.png; sourceTree = "<group>"; };
@@ -317,6 +322,7 @@
 		964F47F61648F9E900A6D09E = {
 			isa = PBXGroup;
 			children = (
+				965A2081165CD1E2007EBB0C /* book */,
 				964F485016492CBF00A6D09E /* cover_newsstand.png */,
 				964F484E16492C4200A6D09E /* cover_retina.png */,
 				964F484C16492C0200A6D09E /* cover.png */,
@@ -434,6 +440,8 @@
 			children = (
 				964F485E1649395600A6D09E /* MagazineManager.h */,
 				964F485F1649395600A6D09E /* MagazineManager.m */,
+				965A2084165CD3A0007EBB0C /* Constant.h */,
+				965A2085165CD3A0007EBB0C /* Constant.m */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -726,6 +734,7 @@
 				9668B837165BB10F00EA424A /* PlayMovieViewController.xib in Resources */,
 				9668B838165BB10F00EA424A /* FashionShowViewController.xib in Resources */,
 				9668B83A165BB10F00EA424A /* PageCell.xib in Resources */,
+				965A2082165CD1E2007EBB0C /* book in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,6 +789,7 @@
 				9668B835165BB10F00EA424A /* CamperMapCell.m in Sources */,
 				9668B839165BB10F00EA424A /* CamperMapViewController.m in Sources */,
 				9668B83B165BB10F00EA424A /* BaseCell.m in Sources */,
+				965A2086165CD3A0007EBB0C /* Constant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

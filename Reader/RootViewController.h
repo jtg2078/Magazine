@@ -47,6 +47,7 @@
 - (IBAction)gotoLeft:(id)sender;
 - (IBAction)gotoRight:(id)sender;
 - (IBAction)showIndex:(id)sender;
+- (IBAction)gotoBookShelf:(id)sender;
 
 @property (retain, nonatomic) NSMutableArray *vcArray;
 
