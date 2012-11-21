@@ -75,6 +75,7 @@
     [_dotButton addTarget:self action:@selector(touchDragInside:withEvent:)
      forControlEvents:UIControlEventTouchDragInside];
     
+    self.vcArray = [NSMutableArray array];
     
     //載入書本內容
     
@@ -85,8 +86,8 @@
      NSString *path = [[NSBundle mainBundle] --pathForResource:@"book" ofType:@"plist" inDirectory:@"book"];
      */
     
-    NSMutableDictionary *dic=[[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    pageAry=[dic objectForKey:@"page"];
+    NSMutableDictionary *dic=[[[NSMutableDictionary alloc] initWithContentsOfFile:path] autorelease];
+    self.pageAry=[dic objectForKey:@"page"];
  
     
     _scrollView.contentSize=CGSizeMake(768*[pageAry count], 1024);
@@ -101,42 +102,59 @@
             page.view.frame=CGRectMake(768*i, 0, 768, 1024);
             page.jumpDelegate=self;
             [_scrollView addSubview:page.view];
-        }else if([type isEqualToString:@"imageH"]){
             
+            [self.vcArray addObject:page];
+            [page release];
+            
+        }else if([type isEqualToString:@"imageH"]){
             PageHViewController *page=[[PageHViewController alloc] initWithAry:[pageAry objectAtIndex:i]];
             page.view.frame=CGRectMake(768*i, 0, 768, 1024);
             page.jumpDelegate=self;
             [_scrollView addSubview:page.view];
+            
+            [self.vcArray addObject:page];
+            [page release];
+            
         }else if([type isEqualToString:@"BuyingNote"] || [type isEqualToString:@"NewBrand"] || [type isEqualToString:@"TrandLook"] || [type isEqualToString:@"SeasonNews"] || [type isEqualToString:@"AD"]){
             HTViewController *page=[[HTViewController alloc] initWithAry:[pageAry objectAtIndex:i]];
             page.view.frame=CGRectMake(768*i, 0, 768, 1024);
-           // page.jumpDelegate=self;
             [_scrollView addSubview:page.view];
+            
+            [self.vcArray addObject:page];
+            [page release];
+            
         }else if([type isEqualToString:@"CamperMap"]){
             CamperMapViewController *page=[[CamperMapViewController alloc] initWithAry:[pageAry objectAtIndex:i]] ;
             page.view.frame=CGRectMake(768*i, 0, 768, 1024);
             [_scrollView addSubview:page.view];
+            
+            [self.vcArray addObject:page];
+            [page release];
 
         }else if([type isEqualToString:@"FashionShow"]){
             FashionShowViewController *page=[[FashionShowViewController alloc] initWithAry:[pageAry objectAtIndex:i]] ;
             page.view.frame=CGRectMake(768*i, 0, 768, 1024);
             [_scrollView addSubview:page.view];
             
+            [self.vcArray addObject:page];
+            [page release];
+            
         }else if([type isEqualToString:@"BackCover"]){
             SocialViewController *page=[[SocialViewController alloc] initWithAry:[pageAry objectAtIndex:i]];
             page.view.frame=CGRectMake(768*i, 0, 768, 1024);
             [_scrollView addSubview:page.view];
             
+            [self.vcArray addObject:page];
+            [page release];
         }
-
     }
     
     //載入index 內容
     
     //NSString *indexPath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"plist" inDirectory:@"book"];
     NSString *indexPath = [manager.currentIssuePath stringByAppendingPathComponent:@"index.plist"];
-    NSMutableDictionary *indexDic=[[NSMutableDictionary alloc] initWithContentsOfFile:indexPath];
-    indexAry=[indexDic objectForKey:@"page"];
+    NSMutableDictionary *indexDic=[[[NSMutableDictionary alloc] initWithContentsOfFile:indexPath] autorelease];
+    self.indexAry=[indexDic objectForKey:@"page"];
 
     // Do any additional setup after loading the view from its nib.
     

@@ -20,3 +20,6 @@ xcuserdata
 
 # Exclude for DerivedData
 DerivedData/
+
+# Exclude Book content
+book/

@@ -48,4 +48,6 @@
 - (IBAction)gotoRight:(id)sender;
 - (IBAction)showIndex:(id)sender;
 
+@property (retain, nonatomic) NSMutableArray *vcArray;
+
 @end
