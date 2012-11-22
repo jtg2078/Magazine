@@ -16,6 +16,7 @@
 #import "StoresViewController.h"
 #import "SocialViewController.h"
 #import "AppDelegate.h"
+#import "SVProgressHUD.h"
 
 
 @interface RootViewController ()
@@ -34,6 +35,7 @@
 @synthesize indexAry;
 @synthesize indexCell;
 @synthesize historyAry;
+@synthesize vcArray = _vcArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,6 +46,7 @@
     return self;
 }
 - (void)dealloc {
+    _scrollView.delegate = nil;
     [_scrollView release];
     [_topView release];
     [_bottomView release];
@@ -60,6 +63,12 @@
     [_myTableView release];
     [_historyButton release];
     [_infoButton release];
+    [_vcArray release];
+    [historyAry release];
+    [indexCell release];
+    [indexAry release];
+    [pageAry release];
+    
     [super dealloc];
 }
 
@@ -165,12 +174,19 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    [SVProgressHUD showWithStatus:@"讀取中"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [SVProgressHUD dismiss];
 }
 
 -(void)page:(int) jumpNo{

@@ -110,7 +110,7 @@
 }
 
 - (void)dealloc {
-
+    _scrollView.delegate = nil;
     [_scrollView release];
     [_pageNoView release];
     [_currentPageNo release];

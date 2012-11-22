@@ -31,6 +31,7 @@
 - (void)dealloc {
 
     [_bImageView release];
+    _scrollView.delegate = nil;
     [_scrollView release];
     [_scrollImage release];
     [_infoImageButton release];

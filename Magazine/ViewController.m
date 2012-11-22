@@ -107,6 +107,17 @@
     [super viewWillDisappear:animated];
 }
 
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 #pragma mark - user action
 
 - (IBAction)gridViewBarButtonPressed:(id)sender
@@ -291,8 +302,8 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 - (void)viewIssue:(NSIndexPath *)indexPath
 {
     [SVProgressHUD showWithStatus:@"讀取中"];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-        
         NSString *issueName = [self.manager nameOfIssueAtIndex:indexPath.row];
         NKIssue *issue = [self.library issueWithName:issueName];
         self.manager.currentIssuePath = [[self.manager downloadPathForIssue:issue] stringByAppendingPathComponent:@"book"];
@@ -306,7 +317,6 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
         
         RootViewController *rvc = [[RootViewController alloc] init];
         [self.navigationController pushViewController:rvc animated:YES];
-        [SVProgressHUD dismiss];
     });
 }
 

@@ -15,7 +15,7 @@
 }
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) NSArray *pageAry;
-@property (retain, nonatomic) id<PageJump> jumpDelegate;
+@property (assign, nonatomic) id<PageJump> jumpDelegate;
 @property (retain, nonatomic) IBOutlet UIView *pageNoView;
 @property (retain, nonatomic) IBOutlet UILabel *currentPageNo;
 @property (retain, nonatomic) IBOutlet UILabel *nextPageNo;
