@@ -32,14 +32,20 @@
 - (void)getIssuesListSuccess:(void (^)())success
                     failure:(void (^)(NSString *reason, NSError *error))failure
 {
-    NSURL *catalogURL = [[NSBundle mainBundle] URLForResource:@"catalog" withExtension:@"plist"];
-    self.issues = [[NSArray alloc] initWithContentsOfURL:catalogURL];
-    self.ready = YES;
-    [self addIssuesInNewsstand];
     
-    if(success)
-        success();
-    /*
+    if (DEVELOPMENT_MODE) {
+        NSURL *catalogURL = [[NSBundle mainBundle] URLForResource:@"catalog" withExtension:@"plist"];
+        self.issues = [[NSArray alloc] initWithContentsOfURL:catalogURL];
+        self.ready = YES;
+        [self addIssuesInNewsstand];
+        
+        if(success)
+            success();
+    }else{
+
+    
+    //線上版書架內容--plist
+    
     AFPropertyListRequestOperation *op = [AFPropertyListRequestOperation propertyListRequestOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://dl.dropbox.com/u/60296373/Magazine/catalog.plist"]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, id propertyList) {
         
         self.issues = [NSArray arrayWithArray:propertyList];
@@ -56,7 +62,7 @@
     }];
     
     [op start];
-     */
+    }
 }
 
 - (void)addIssuesInNewsstand
