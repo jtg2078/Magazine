@@ -8,5 +8,5 @@
 
 #import "Constant.h"
 
-BOOL const DEVELOPMENT_MODE = YES;
-NSString * const PLIST_PATH = @"";
+BOOL const DEVELOPMENT_MODE = NO;
+NSString * const PLIST_PATH = @"http://msyaming.s3.amazonaws.com/catalog.plist";

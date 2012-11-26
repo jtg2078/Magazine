@@ -478,6 +478,7 @@
     if (!cell) {
         [[NSBundle mainBundle] loadNibNamed:@"IndexCell" owner:self options:nil];
         cell =indexCell;
+        self.indexCell = nil;
     }
     
     NSDictionary *cellDic=[indexAry objectAtIndex:indexPath.row];

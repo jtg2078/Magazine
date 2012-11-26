@@ -56,8 +56,6 @@
 		964F48CD16497DA000A6D09E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 964F48CC16497DA000A6D09E /* libz.dylib */; };
 		964F48E3164A265600A6D09E /* bg_bookshelf.png in Resources */ = {isa = PBXBuildFile; fileRef = 964F48E2164A265600A6D09E /* bg_bookshelf.png */; };
 		964F48F8164A507800A6D09E /* catalog.plist in Resources */ = {isa = PBXBuildFile; fileRef = 964F48F7164A507800A6D09E /* catalog.plist */; };
-		964F4916164A767E00A6D09E /* bookCover_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 964F4915164A767E00A6D09E /* bookCover_large.png */; };
-		965A2082165CD1E2007EBB0C /* book in Resources */ = {isa = PBXBuildFile; fileRef = 965A2081165CD1E2007EBB0C /* book */; };
 		965A2086165CD3A0007EBB0C /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 965A2085165CD3A0007EBB0C /* Constant.m */; };
 		9668B7F8165BB0DA00EA424A /* video_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B7F4165BB0DA00EA424A /* video_b.png */; };
 		9668B804165BB0E700EA424A /* btnBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B7FD165BB0E700EA424A /* btnBg.png */; };
@@ -66,7 +64,6 @@
 		9668B807165BB0E700EA424A /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B800165BB0E700EA424A /* backArrow.png */; };
 		9668B808165BB0E700EA424A /* close_B.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B801165BB0E700EA424A /* close_B.png */; };
 		9668B809165BB0E700EA424A /* photo_B.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B802165BB0E700EA424A /* photo_B.png */; };
-		9668B80A165BB0E700EA424A /* 說明_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668B803165BB0E700EA424A /* 說明_1.png */; };
 		9668B829165BB10F00EA424A /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9668B80B165BB10F00EA424A /* SocialViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9668B82A165BB10F00EA424A /* LinkBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 9668B80C165BB10F00EA424A /* LinkBtn.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9668B82B165BB10F00EA424A /* VideoBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 9668B80E165BB10F00EA424A /* VideoBtn.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -198,8 +195,6 @@
 		964F48CC16497DA000A6D09E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		964F48E2164A265600A6D09E /* bg_bookshelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_bookshelf.png; sourceTree = "<group>"; };
 		964F48F7164A507800A6D09E /* catalog.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = catalog.plist; sourceTree = "<group>"; };
-		964F4915164A767E00A6D09E /* bookCover_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookCover_large.png; sourceTree = "<group>"; };
-		965A2081165CD1E2007EBB0C /* book */ = {isa = PBXFileReference; lastKnownFileType = folder; path = book; sourceTree = "<group>"; };
 		965A2084165CD3A0007EBB0C /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constant.h; path = Manager/Constant.h; sourceTree = SOURCE_ROOT; };
 		965A2085165CD3A0007EBB0C /* Constant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constant.m; path = Manager/Constant.m; sourceTree = SOURCE_ROOT; };
 		9668B7F4165BB0DA00EA424A /* video_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video_b.png; sourceTree = "<group>"; };
@@ -209,7 +204,6 @@
 		9668B800165BB0E700EA424A /* backArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrow.png; sourceTree = "<group>"; };
 		9668B801165BB0E700EA424A /* close_B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_B.png; sourceTree = "<group>"; };
 		9668B802165BB0E700EA424A /* photo_B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo_B.png; sourceTree = "<group>"; };
-		9668B803165BB0E700EA424A /* 說明_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "說明_1.png"; sourceTree = "<group>"; };
 		9668B80B165BB10F00EA424A /* SocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialViewController.m; sourceTree = "<group>"; };
 		9668B80C165BB10F00EA424A /* LinkBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkBtn.m; sourceTree = "<group>"; };
 		9668B80D165BB10F00EA424A /* SocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialViewController.h; sourceTree = "<group>"; };
@@ -322,7 +316,6 @@
 		964F47F61648F9E900A6D09E = {
 			isa = PBXGroup;
 			children = (
-				965A2081165CD1E2007EBB0C /* book */,
 				964F485016492CBF00A6D09E /* cover_newsstand.png */,
 				964F484E16492C4200A6D09E /* cover_retina.png */,
 				964F484C16492C0200A6D09E /* cover.png */,
@@ -410,7 +403,6 @@
 			isa = PBXGroup;
 			children = (
 				96E3A193164BB205001DEF64 /* reader */,
-				964F4915164A767E00A6D09E /* bookCover_large.png */,
 				964F48E2164A265600A6D09E /* bg_bookshelf.png */,
 				964F482A1648FE7000A6D09E /* bg_section.png */,
 				964F482B1648FE7000A6D09E /* bookCover.png */,
@@ -616,7 +608,6 @@
 				96E3A1A2164BB205001DEF64 /* topbar.png */,
 				9668B7F4165BB0DA00EA424A /* video_b.png */,
 				9668B7FF165BB0E700EA424A /* w_video_b.png */,
-				9668B803165BB0E700EA424A /* 說明_1.png */,
 			);
 			path = reader;
 			sourceTree = "<group>";
@@ -694,7 +685,6 @@
 				964F48B61649488800A6D09E /* SVProgressHUD.bundle in Resources */,
 				964F48E3164A265600A6D09E /* bg_bookshelf.png in Resources */,
 				964F48F8164A507800A6D09E /* catalog.plist in Resources */,
-				964F4916164A767E00A6D09E /* bookCover_large.png in Resources */,
 				96E3A181164BB1EE001DEF64 /* BrandCell.xib in Resources */,
 				96E3A183164BB1EE001DEF64 /* BuyingNoteCell.xib in Resources */,
 				96E3A185164BB1EE001DEF64 /* HTViewController.xib in Resources */,
@@ -725,7 +715,6 @@
 				9668B807165BB0E700EA424A /* backArrow.png in Resources */,
 				9668B808165BB0E700EA424A /* close_B.png in Resources */,
 				9668B809165BB0E700EA424A /* photo_B.png in Resources */,
-				9668B80A165BB0E700EA424A /* 說明_1.png in Resources */,
 				9668B82D165BB10F00EA424A /* SocialViewController.xib in Resources */,
 				9668B830165BB10F00EA424A /* StoresViewController.xib in Resources */,
 				9668B831165BB10F00EA424A /* SeasonNewsCell.xib in Resources */,
@@ -734,7 +723,6 @@
 				9668B837165BB10F00EA424A /* PlayMovieViewController.xib in Resources */,
 				9668B838165BB10F00EA424A /* FashionShowViewController.xib in Resources */,
 				9668B83A165BB10F00EA424A /* PageCell.xib in Resources */,
-				965A2082165CD1E2007EBB0C /* book in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,6 +858,7 @@
 		964F48261648F9E900A6D09E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Magazine/Magazine-Prefix.pch";
 				INFOPLIST_FILE = "Magazine/Magazine-Info.plist";
@@ -881,10 +870,12 @@
 		964F48271648F9E900A6D09E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Digital Media Concept corp.";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Magazine/Magazine-Prefix.pch";
 				INFOPLIST_FILE = "Magazine/Magazine-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "212F1D6D-E539-463B-B3BD-01E4E4BE5F10";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

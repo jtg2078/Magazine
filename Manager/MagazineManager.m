@@ -89,7 +89,7 @@
 - (void)setCoverOfIssueAtIndex:(NSInteger)index
                completionBlock:(void(^)(UIImage *img))block
 {
-    NSURL *coverURL = [NSURL URLWithString:[[self issueAtIndex:index] objectForKey:@"Cover"]];
+    NSURL *coverURL = [NSURL URLWithString:[[self issueAtIndex:index] objectForKey:@"cover"]];
     NSString *coverFileName = [coverURL lastPathComponent];
     NSString *coverFilePath = [CacheDirectory stringByAppendingPathComponent:coverFileName];
     
@@ -139,7 +139,27 @@
     {
         //線上版書架內容--plist
         
-        AFPropertyListRequestOperation *op = [AFPropertyListRequestOperation propertyListRequestOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://dl.dropbox.com/u/60296373/Magazine/catalog.plist"]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, id propertyList) {
+        /*
+        AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:PLIST_PATH]]];
+        [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            self.issueArray = [NSArray arrayWithContentsOfFile:responseObject];
+            self.ready = YES;
+            [self addIssuesInNewsstand];
+            
+            if(success)
+                success();
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            self.ready = NO;
+            if(failure)
+                failure(@"無法下載型錄", error);
+        }];
+         */
+        
+        
+        AFPropertyListRequestOperation *op = [AFPropertyListRequestOperation propertyListRequestOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:PLIST_PATH]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, id propertyList) {
             
             self.issueArray = [NSArray arrayWithArray:propertyList];
             self.ready = YES;
@@ -152,8 +172,9 @@
             
             self.ready = NO;
             if(failure)
-                failure(@"Unable to retrieve catalog plist", error);
+                failure(@"無法下載型錄", error);
         }];
+         
         
         [op start];
     }
@@ -269,7 +290,7 @@
     
     if(issueName && latestIssue && [issueName isEqualToString:latestIssue] == YES)
     {
-         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
+         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     }
 }
 
