@@ -9,4 +9,6 @@
 #import <Foundation/Foundation.h>
 
 extern BOOL const DEVELOPMENT_MODE;
+extern NSString * const PLIST_PATH;
+
 

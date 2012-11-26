@@ -4,51 +4,17 @@
 <array>
 	<dict>
 		<key>name</key>
-		<string>magazine-0</string>
-		<key>title</key>
-		<string>2011春夏</string>
-		<key>date</key>
-		<date>2011-03-03T12:08:11Z</date>
-		<key>cover</key>
-		<string>https://www.dropbox.com/s/0zizxjjg8l39k4g/cover_newsstand.png</string>
-		<key>content</key>
-		<string>http://static.dbx.tw/pcc/book.zip</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>magazine-1</string>
-		<key>title</key>
-		<string>2011秋冬</string>
-		<key>date</key>
-		<date>2011-10-03T12:08:11Z</date>
-		<key>cover</key>
-		<string>https://www.dropbox.com/s/0zizxjjg8l39k4g/cover_newsstand.png</string>
-		<key>content</key>
-		<string>http://static.dbx.tw/pcc/book.zip</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>magazine-2</string>
-		<key>title</key>
-		<string>2012春夏</string>
-		<key>date</key>
-		<date>2012-03-03T12:08:11Z</date>
-		<key>cover</key>
-		<string>https://www.dropbox.com/s/0zizxjjg8l39k4g/cover_newsstand.png</string>
-		<key>content</key>
-		<string>http://static.dbx.tw/pcc/book.zip</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>magazine-3</string>
+		<string>magazine-2012-fall-winter</string>
 		<key>title</key>
 		<string>2012秋冬</string>
 		<key>date</key>
-		<date>2012-10-03T12:08:11Z</date>
+		<date>2012-09-01T00:00:00Z</date>
 		<key>cover</key>
-		<string>https://www.dropbox.com/s/0zizxjjg8l39k4g/cover_newsstand.png</string>
+		<string>http://msyaming.s3.amazonaws.com/2012_2_fall/issue_cover.png</string>
+		<key>newsstandIcon</key>
+		<string>http://msyaming.s3.amazonaws.com/2012_2_fall/issue_newsstand_icon.png</string>
 		<key>content</key>
-		<string>http://static.dbx.tw/pcc/book.zip</string>
+		<string>http://msyaming.s3.amazonaws.com/2012_2_fall/book.zip</string>
 	</dict>
 </array>
 </plist>
