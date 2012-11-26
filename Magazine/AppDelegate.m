@@ -7,12 +7,17 @@
 //
 
 #import "AppDelegate.h"
+#import "MagazineManager.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // resume any failed download
+    [[MagazineManager sharedInstance] resumeAnyFailedDownload];
+    
     return YES;
 }
 							

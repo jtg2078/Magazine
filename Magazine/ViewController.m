@@ -33,7 +33,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    // -------------------- cell view --------------------
+    // -------------------- manager --------------------
+    
+    self.manager = [MagazineManager sharedInstance];
+    self.manager.bookcaseDelegate = self;
     
     // -------------------- collection view --------------------
     
@@ -69,7 +72,6 @@
     // -------------------- app state --------------------
     
     self.viewMode = ViewModeGrid;
-    self.manager = [MagazineManager sharedInstance];
     self.library = [NKLibrary sharedLibrary];
     self.issuesPreparingForDownload = [NSMutableSet set];
     
@@ -79,13 +81,6 @@
     [self.manager getIssuesListSuccess:^{
         [SVProgressHUD showSuccessWithStatus:@"Success!"];
         [self.collectionView reloadData];
-        
-        // resume any failed downloads
-        NKLibrary *nkLib = [NKLibrary sharedLibrary];
-        for(NKAssetDownload *asset in [nkLib downloadingAssets])
-        {
-            [asset downloadWithDelegate:self];
-        }
         
     } failure:^(NSString *reason, NSError *error) {
         [SVProgressHUD showErrorWithStatus:reason];
@@ -308,11 +303,14 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
         NKIssue *issue = [self.library issueWithName:issueName];
         self.manager.currentIssuePath = [[self.manager downloadPathForIssue:issue] stringByAppendingPathComponent:@"book"];
         
-        NSLog(@"path: %@", self.manager.currentIssuePath);
+        [self.manager setCurrentIssue:issueName];
+        [self.manager markIssueRead:issueName];
         
         if(DEVELOPMENT_MODE == YES)
         {
             self.manager.currentIssuePath = [[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"book"];
+            
+            NSLog(@"path: %@", self.manager.currentIssuePath);
         }
         
         RootViewController *rvc = [[RootViewController alloc] init];
@@ -339,18 +337,9 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 - (void)downloadIssue:(NSIndexPath *)indexPath
 {
     NSString *issueName = [self.manager nameOfIssueAtIndex:indexPath.row];
-    NKIssue *issue = [self.library issueWithName:issueName];
-    NSURL *downloadURL = [self.manager contentURLForIssueWithName:issue.name];
     
-    if(!downloadURL)
-        return;
-    
-    NKAssetDownload *assetDownload = [issue addAssetWithRequest:[NSURLRequest requestWithURL:downloadURL]];
-    
-    [assetDownload setUserInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                                [NSNumber numberWithInt:indexPath.row], @"indexPathRow",
-                                [NSNumber numberWithInt:indexPath.section], @"indexPathSection",nil]];
-    [assetDownload downloadWithDelegate:self];
+    [self.manager downloadIssue:issueName
+                      indexPath:indexPath];
     
     [self.issuesPreparingForDownload addObject:indexPath];
 }
@@ -362,16 +351,13 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
     
 }
 
-#pragma mark - NSURLConnectionDownloadDelegate
+#pragma mark - MagazineManagerBookcaseDelegate
 
-- (void)connection:(NSURLConnection *)connection
-      didWriteData:(long long)bytesWritten
- totalBytesWritten:(long long)totalBytesWritten
-expectedTotalBytes:(long long)expectedTotalBytes
+- (void)downloadingProgressForIndexPath:(NSIndexPath *)indexPath
+                           didWriteData:(long long)bytesWritten
+                      totalBytesWritten:(long long)totalBytesWritten
+                     expectedTotalBytes:(long long)expectedTotalBytes
 {
-    NKAssetDownload *assetDownload = connection.newsstandAssetDownload;
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[assetDownload.userInfo objectForKey:@"indexPathRow"] intValue] inSection:[[assetDownload.userInfo objectForKey:@"indexPathSection"] intValue]];
-    
     id cell = [self.collectionView cellForItemAtIndexPath:indexPath];
     
     if(cell == nil)
@@ -408,20 +394,17 @@ expectedTotalBytes:(long long)expectedTotalBytes
     }
 }
 
-- (void)connectionDidResumeDownloading:(NSURLConnection *)connection
+- (void)downloadingResumedForIndexPath:(NSIndexPath *)indexPath
                      totalBytesWritten:(long long)totalBytesWritten
                     expectedTotalBytes:(long long)expectedTotalBytes
 {
     
 }
 
-- (void)connectionDidFinishDownloading:(NSURLConnection *)connection
-                        destinationURL:(NSURL *)destinationURL
+- (void)downloadingFinishedForIndexPath:(NSIndexPath *)indexPath
+                                  issue:(NKIssue *)issue
+                         destinationURL:(NSURL *)destinationURL
 {
-    NKAssetDownload *assetDownload = connection.newsstandAssetDownload;
-    NKIssue *issue = assetDownload.issue;
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[assetDownload.userInfo objectForKey:@"indexPathRow"] intValue] inSection:[[assetDownload.userInfo objectForKey:@"indexPathSection"] intValue]];
-    
     id cell = [self.collectionView cellForItemAtIndexPath:indexPath];
     
     if(cell == nil)
@@ -438,6 +421,10 @@ expectedTotalBytes:(long long)expectedTotalBytes
             [SSZipArchive unzipFileAtPath:zipPath toDestination:destinationPath];
             
             [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+            
+            [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+                NSLog(@"Unzipping process is time out in background task mode: %@", destinationPath);
+            }];
         });
     }
 }

@@ -9,15 +9,30 @@
 #import <UIKit/UIKit.h>
 #import <NewsstandKit/NewsstandKit.h>
 
-@interface MagazineManager : NSObject
+@protocol MagazineManagerBookcaseDelegate<NSObject>
+@required
+- (void)downloadingProgressForIndexPath:(NSIndexPath *)indexPath
+                           didWriteData:(long long)bytesWritten
+                      totalBytesWritten:(long long)totalBytesWritten
+                     expectedTotalBytes:(long long)expectedTotalBytes;
+- (void)downloadingResumedForIndexPath:(NSIndexPath *)indexPath
+         totalBytesWritten:(long long)totalBytesWritten
+        expectedTotalBytes:(long long)expectedTotalBytes;
+- (void)downloadingFinishedForIndexPath:(NSIndexPath *)indexPath
+                                  issue:(NKIssue *)issue
+                         destinationURL:(NSURL *)destinationURL;
+@end
+
+@interface MagazineManager : NSObject <NSURLConnectionDownloadDelegate>
 {
     
 }
 
-@property (strong, nonatomic) NSArray *issues;
+@property (strong, nonatomic) NSArray *issueArray;
 @property (assign, nonatomic) BOOL ready;
 @property (strong, nonatomic) NSString *currentIssuePath;
 @property (assign, nonatomic) BOOL isFlowLayout;
+@property (weak, nonatomic) id<MagazineManagerBookcaseDelegate> bookcaseDelegate;
 
 + (MagazineManager *)sharedInstance;
 
@@ -32,5 +47,14 @@
 - (NSString *)downloadPathForIssue:(NKIssue *)nkIssue;
 - (UIImage *)coverImageForIssue:(NKIssue *)nkIssue;
 - (void)removeDownloadedIssue:(NSString *)issueName;
+
+- (void)downloadIssue:(NSString *)issueName
+            indexPath:(NSIndexPath *)indexPath;
+- (void)resumeAnyFailedDownload;
+
+- (void)setCurrentIssue:(NSString *)issueName;
+
+- (void)saveLatestIssue:(NSString *)issueName;
+- (void)markIssueRead:(NSString *)issueName;
 
 @end

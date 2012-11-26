@@ -18,11 +18,10 @@ typedef enum{
     ViewModePage,
 }ViewMode;
 
-@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MagazineCellDelegate, MagazineCellDownloadingDelegate, MagazineCellToDownloadDelegate, NSURLConnectionDownloadDelegate>
+@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MagazineCellDelegate, MagazineCellDownloadingDelegate, MagazineCellToDownloadDelegate, MagazineManagerBookcaseDelegate>
 {
     int cellSizeWidth;
     int cellSizeHeight;
-    
 }
 
 @property (weak, nonatomic) MagazineManager *manager;
