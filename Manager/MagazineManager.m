@@ -8,12 +8,14 @@
 
 #import "MagazineManager.h"
 #import "AFNetworking.h"
+#import "ReceiptCheck.h"
 
 @implementation MagazineManager
 
 #pragma mark - define
 
 #define CacheDirectory [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+#define DocumentsDirectory [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 
 #pragma mark - init
 
@@ -22,7 +24,9 @@
     self = [super init];
     if (self) {
         _isFlowLayout = YES;
-
+        
+        // StoreKit transaction observer
+        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     }
     return self;
 }
@@ -138,26 +142,6 @@
     else
     {
         //線上版書架內容--plist
-        
-        /*
-        AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:PLIST_PATH]]];
-        [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-            self.issueArray = [NSArray arrayWithContentsOfFile:responseObject];
-            self.ready = YES;
-            [self addIssuesInNewsstand];
-            
-            if(success)
-                success();
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-            self.ready = NO;
-            if(failure)
-                failure(@"無法下載型錄", error);
-        }];
-         */
-        
         
         AFPropertyListRequestOperation *op = [AFPropertyListRequestOperation propertyListRequestOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:PLIST_PATH]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, id propertyList) {
             
@@ -292,6 +276,138 @@
     {
          [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     }
+}
+
+#pragma mark - subscription related code
+
+- (void)processSubscription
+{
+    if(subscriptionProcessing == YES)
+        return;
+    
+    subscriptionProcessing = YES;
+    NSSet *subscription = [NSSet setWithObject:FREE_SUBSCRIPTION_ID];
+    SKProductsRequest *subscriptionRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:subscription];
+    subscriptionRequest.delegate = self;
+    
+    [subscriptionRequest start];
+}
+
+#pragma mark - SKProductsRequestDelegate
+
+- (void)requestDidFinish:(SKRequest *)request
+{
+    subscriptionProcessing = NO;
+    NSLog(@"requestDidFinish Request: %@", request);
+}
+
+- (void)request:(SKRequest *)request didFailWithError:(NSError *)error
+{
+    subscriptionProcessing = NO;
+    NSLog(@"Request %@ failed with error %@", request, error);
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchase error"
+                                                    message:[error localizedDescription]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Close"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    NSLog(@"productsRequest: %@ -- didReceiveResponse: %@", request, response);
+    NSLog(@"Products: %@", response.products);
+    
+    for(SKProduct *product in response.products)
+    {
+        SKPayment *payment = [SKPayment paymentWithProduct:product];
+        [[SKPaymentQueue defaultQueue] addPayment:payment];
+    }
+}
+
+-(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
+{
+    for(SKPaymentTransaction *transaction in transactions)
+    {
+        NSLog(@"Updated updatedTransactions %@", transaction);
+        
+        switch (transaction.transactionState)
+        {
+            case SKPaymentTransactionStateFailed:
+                [self errorWithTransaction:transaction];
+                break;
+            case SKPaymentTransactionStatePurchasing:
+                NSLog(@"Purchasing...");
+                break;
+            case SKPaymentTransactionStatePurchased:
+            case SKPaymentTransactionStateRestored:
+                [self finishedTransaction:transaction];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+-(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+{
+    NSLog(@"Restored all completed transactions");
+}
+
+-(void)finishedTransaction:(SKPaymentTransaction *)transaction
+{
+    NSLog(@"finishedTransaction %@", transaction);
+    
+    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    
+    // save receipt
+    [[NSUserDefaults standardUserDefaults] setObject:transaction.transactionIdentifier
+                                              forKey:@"receipt"];
+    // check receipt
+    [self checkReceipt:transaction.transactionReceipt];
+}
+
+-(void)errorWithTransaction:(SKPaymentTransaction *)transaction
+{
+    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Subscription failure"
+                                                    message:[transaction.error localizedDescription]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Close"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+-(void)checkReceipt:(NSData *)receipt
+{
+    // save receipt
+    NSString *receiptStorageFile = [DocumentsDirectory stringByAppendingPathComponent:@"receipts.plist"];
+    NSMutableArray *receiptStorage = [[NSMutableArray alloc] initWithContentsOfFile:receiptStorageFile];
+    
+    if(!receiptStorage) {
+        receiptStorage = [[NSMutableArray alloc] init];
+    }
+    
+    [receiptStorage addObject:receipt];
+    [receiptStorage writeToFile:receiptStorageFile atomically:YES];
+    
+    [ReceiptCheck validateReceiptWithData:receipt completionHandler:^(BOOL success,NSString *answer){
+        
+        if(success==YES)
+        {
+            NSLog(@"Receipt has been validated: %@",answer);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchase OK" message:nil delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+            [alert show];
+        }
+        else
+        {
+            NSLog(@"Receipt not validated! Error: %@",answer);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchase Error" message:@"Cannot validate receipt" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+            [alert show];
+        };
+    }];
 }
 
 #pragma mark - NSURLConnectionDownloadDelegate

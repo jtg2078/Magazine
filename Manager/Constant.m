@@ -10,3 +10,4 @@
 
 BOOL const DEVELOPMENT_MODE = NO;
 NSString * const PLIST_PATH = @"http://msyaming.s3.amazonaws.com/catalog.plist";
+NSString * const FREE_SUBSCRIPTION_ID = @"2012_11_26";

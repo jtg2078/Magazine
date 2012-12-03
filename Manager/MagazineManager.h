@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <NewsstandKit/NewsstandKit.h>
 
+
 @protocol MagazineManagerBookcaseDelegate<NSObject>
 @required
 - (void)downloadingProgressForIndexPath:(NSIndexPath *)indexPath
@@ -23,9 +24,9 @@
                          destinationURL:(NSURL *)destinationURL;
 @end
 
-@interface MagazineManager : NSObject <NSURLConnectionDownloadDelegate>
+@interface MagazineManager : NSObject <NSURLConnectionDownloadDelegate, SKProductsRequestDelegate, SKRequestDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver>
 {
-    
+    BOOL subscriptionProcessing;
 }
 
 @property (strong, nonatomic) NSArray *issueArray;
@@ -56,5 +57,7 @@
 
 - (void)saveLatestIssue:(NSString *)issueName;
 - (void)markIssueRead:(NSString *)issueName;
+
+- (void)processSubscription;
 
 @end

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9626564D166C938000206539 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9626564C166C938000206539 /* StoreKit.framework */; };
+		96265657166C9F2100206539 /* ReceiptCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 96265656166C9F2100206539 /* ReceiptCheck.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9626565B166CA04B00206539 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9626565A166CA04B00206539 /* NSString+Base64.m */; };
 		964F48061648F9E900A6D09E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964F48051648F9E900A6D09E /* UIKit.framework */; };
 		964F48081648F9E900A6D09E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964F48071648F9E900A6D09E /* Foundation.framework */; };
 		964F480A1648F9E900A6D09E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964F48091648F9E900A6D09E /* CoreGraphics.framework */; };
@@ -125,6 +128,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9626564C166C938000206539 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		96265655166C9F2100206539 /* ReceiptCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptCheck.h; sourceTree = "<group>"; };
+		96265656166C9F2100206539 /* ReceiptCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptCheck.m; sourceTree = "<group>"; };
+		96265659166CA04B00206539 /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		9626565A166CA04B00206539 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
 		964F48011648F9E900A6D09E /* Magazine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Magazine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		964F48051648F9E900A6D09E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		964F48071648F9E900A6D09E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -297,6 +305,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9626564D166C938000206539 /* StoreKit.framework in Frameworks */,
 				9668B83D165BB1AC00EA424A /* MediaPlayer.framework in Frameworks */,
 				964F48CD16497DA000A6D09E /* libz.dylib in Frameworks */,
 				964F48941649443400A6D09E /* SystemConfiguration.framework in Frameworks */,
@@ -313,6 +322,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96265654166C9F2100206539 /* ReceiptCheck */ = {
+			isa = PBXGroup;
+			children = (
+				96265655166C9F2100206539 /* ReceiptCheck.h */,
+				96265656166C9F2100206539 /* ReceiptCheck.m */,
+			);
+			path = ReceiptCheck;
+			sourceTree = "<group>";
+		};
+		96265658166CA04B00206539 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				96265659166CA04B00206539 /* NSString+Base64.h */,
+				9626565A166CA04B00206539 /* NSString+Base64.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		964F47F61648F9E900A6D09E = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +375,7 @@
 				964F48851649423800A6D09E /* MobileCoreServices.framework */,
 				964F48571649373D00A6D09E /* NewsstandKit.framework */,
 				964F488D164943F500A6D09E /* Security.framework */,
+				9626564C166C938000206539 /* StoreKit.framework */,
 				964F48831649423100A6D09E /* SystemConfiguration.framework */,
 				964F48051648F9E900A6D09E /* UIKit.framework */,
 			);
@@ -441,9 +469,11 @@
 		964F486116493B5D00A6D09E /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				964F48951649448600A6D09E /* AFNetworking */,
+				96265658166CA04B00206539 /* Category */,
+				96265654166C9F2100206539 /* ReceiptCheck */,
 				9675C87316562EBE00522E0D /* ssziparchive */,
 				964F48B21649488800A6D09E /* SVProgressHUD */,
-				964F48951649448600A6D09E /* AFNetworking */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -778,6 +808,8 @@
 				9668B839165BB10F00EA424A /* CamperMapViewController.m in Sources */,
 				9668B83B165BB10F00EA424A /* BaseCell.m in Sources */,
 				965A2086165CD3A0007EBB0C /* Constant.m in Sources */,
+				96265657166C9F2100206539 /* ReceiptCheck.m in Sources */,
+				9626565B166CA04B00206539 /* NSString+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,11 +890,12 @@
 		964F48261648F9E900A6D09E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Magazine/Magazine-Prefix.pch";
 				INFOPLIST_FILE = "Magazine/Magazine-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -870,12 +903,12 @@
 		964F48271648F9E900A6D09E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Digital Media Concept corp.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Magazine/Magazine-Prefix.pch";
 				INFOPLIST_FILE = "Magazine/Magazine-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "212F1D6D-E539-463B-B3BD-01E4E4BE5F10";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

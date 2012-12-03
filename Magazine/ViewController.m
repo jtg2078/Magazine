@@ -148,6 +148,11 @@
     }];
 }
 
+- (IBAction)subscribeBarButtonPressed:(id)sender
+{
+    [self.manager processSubscription];
+}
+
 #pragma mark - UICollectionView Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)view

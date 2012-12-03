@@ -36,5 +36,6 @@ typedef enum{
 
 - (IBAction)gridViewBarButtonPressed:(id)sender;
 - (IBAction)pageViewBarButtonPressed:(id)sender;
+- (IBAction)subscribeBarButtonPressed:(id)sender;
 
 @end
