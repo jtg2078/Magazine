@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PageJump.h"
 
-@interface PageViewController : UIViewController <UIScrollViewDelegate> {
+@interface PageViewController : GAITrackedViewController <UIScrollViewDelegate> {
     NSArray *pageAry;
     id<PageJump> jumpDelegate;
     

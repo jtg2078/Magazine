@@ -16,7 +16,7 @@
 
 
 
-@interface HTViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+@interface HTViewController : GAITrackedViewController<UITableViewDataSource,UITableViewDelegate>{
     NSArray *pageAry;
     NSArray *typeAry;
     NSString *type;

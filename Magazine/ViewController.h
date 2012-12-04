@@ -12,13 +12,15 @@
 #import "MagazineCell.h"
 #import "MagazineCellDownloading.h"
 #import "MagazineCellToDownload.h"
+#import "MagazineCellSubscription.h"
+
 
 typedef enum{
     ViewModeGrid,
     ViewModePage,
 }ViewMode;
 
-@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MagazineCellDelegate, MagazineCellDownloadingDelegate, MagazineCellToDownloadDelegate, MagazineManagerBookcaseDelegate>
+@interface ViewController : GAITrackedViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MagazineCellDelegate, MagazineCellDownloadingDelegate, MagazineCellToDownloadDelegate, MagazineCellSubscriptionDelegate, MagazineManagerBookcaseDelegate>
 {
     int cellSizeWidth;
     int cellSizeHeight;
@@ -33,6 +35,7 @@ typedef enum{
 @property (strong, nonatomic) UICollectionViewFlowLayout *pageLayout;
 @property (assign, nonatomic) ViewMode viewMode;
 @property (strong, nonatomic) NSMutableSet *issuesPreparingForDownload;
+@property (strong, nonatomic) NSMutableSet *issuesIsUnzipping;
 
 - (IBAction)gridViewBarButtonPressed:(id)sender;
 - (IBAction)pageViewBarButtonPressed:(id)sender;

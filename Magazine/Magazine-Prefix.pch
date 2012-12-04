@@ -16,4 +16,5 @@
     #import <StoreKit/StoreKit.h>
     #import "MagazineManager.h"
     #import "Constant.h"
+    #import "GAITrackedViewController.h"
 #endif

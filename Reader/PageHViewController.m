@@ -40,6 +40,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.trackedViewName = NSStringFromClass([self class]);
     int totalHeight=0;
     int totalWidth=0;
     

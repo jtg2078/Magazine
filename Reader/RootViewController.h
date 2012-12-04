@@ -10,7 +10,7 @@
 #import "PageJump.h"
 #import "IndexCell.h"
 
-@interface RootViewController : UIViewController<UIScrollViewDelegate,PageJump,UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource>{
+@interface RootViewController : GAITrackedViewController<UIScrollViewDelegate,PageJump,UIGestureRecognizerDelegate,UITableViewDelegate,UITableViewDataSource>{
     NSMutableArray *pageAry;
     NSMutableArray *indexAry;
     int currentPage;

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YoutubeViewController : UIViewController<UIWebViewDelegate>{
+@interface YoutubeViewController : GAITrackedViewController<UIWebViewDelegate>{
     
     NSString *myURL;
     

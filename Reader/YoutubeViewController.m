@@ -39,6 +39,8 @@
 {
     [super viewDidLoad];
     
+    self.trackedViewName = NSStringFromClass([self class]);
+    
     //NSString *pathStr= [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     //_url=[[NSString stringWithString:pathStr] retain];
     //<iframe width="640" height="480" src="http://www.youtube.com/embed/qelzu1wDCIU" frameborder="0" allowfullscreen></iframe>

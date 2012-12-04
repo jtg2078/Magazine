@@ -37,6 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.trackedViewName = NSStringFromClass([self class]);
     MagazineManager *manager = [MagazineManager sharedInstance];
     //NSString *path = [[NSBundle mainBundle] pathForResource:[myDic objectForKey:@"videoUrl"] ofType:nil inDirectory:@"book"];
     NSString *path = [manager.currentIssuePath stringByAppendingPathComponent:[myDic objectForKey:@"videoUrl"]];

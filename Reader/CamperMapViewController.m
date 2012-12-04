@@ -38,6 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.trackedViewName = NSStringFromClass([self class]);
     MagazineManager *manager = [MagazineManager sharedInstance];
     NSDictionary *dic=[pageAry objectAtIndex:1];
     //NSString *backFilename = [[NSBundle mainBundle] pathForResource:[dic objectForKey:@"backImage"] ofType:nil inDirectory:@"book"];

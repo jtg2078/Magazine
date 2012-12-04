@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FashionShowViewController : UIViewController{
+@interface FashionShowViewController : GAITrackedViewController{
      NSArray *pageAry;
 }
 @property (retain, nonatomic) NSArray *pageAry;

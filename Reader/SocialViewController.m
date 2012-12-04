@@ -40,6 +40,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.trackedViewName = NSStringFromClass([self class]);
     NSDictionary *dic=[pageAry objectAtIndex:1];
     int pageWidth=[[dic objectForKey:@"width"] intValue];
     int pageHeight=[[dic objectForKey:@"height"] intValue];

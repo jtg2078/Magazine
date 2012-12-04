@@ -11,5 +11,6 @@
 extern BOOL const DEVELOPMENT_MODE;
 extern NSString * const PLIST_PATH;
 extern NSString * const FREE_SUBSCRIPTION_ID;
+extern NSString * const GOOGLE_ANALYTICS_ID;
 
 

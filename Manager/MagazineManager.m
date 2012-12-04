@@ -8,7 +8,7 @@
 
 #import "MagazineManager.h"
 #import "AFNetworking.h"
-#import "ReceiptCheck.h"
+
 
 @implementation MagazineManager
 
@@ -132,7 +132,11 @@
     if(DEVELOPMENT_MODE)
     {
         NSURL *catalogURL = [[NSBundle mainBundle] URLForResource:@"catalog" withExtension:@"plist"];
-        self.issueArray = [[NSArray alloc] initWithContentsOfURL:catalogURL];
+        
+        NSMutableArray *array = [NSMutableArray arrayWithArray:[[NSArray alloc] initWithContentsOfURL:catalogURL]];
+        [array insertObject:[NSDictionary dictionary] atIndex:0]; // the first object is reserved for "subscribe cell"
+        
+        self.issueArray = array;
         self.ready = YES;
         [self addIssuesInNewsstand];
         
@@ -145,7 +149,10 @@
         
         AFPropertyListRequestOperation *op = [AFPropertyListRequestOperation propertyListRequestOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:PLIST_PATH]] success:^(NSURLRequest *request, NSHTTPURLResponse *response, id propertyList) {
             
-            self.issueArray = [NSArray arrayWithArray:propertyList];
+            NSMutableArray *array = [NSMutableArray arrayWithArray:propertyList];
+            [array insertObject:[NSDictionary dictionary] atIndex:0]; // the first object is reserved for "subscribe cell"
+            
+            self.issueArray = array;
             self.ready = YES;
             [self addIssuesInNewsstand];
             
@@ -170,31 +177,34 @@
     [self.issueArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
      {
          NSString *name = [(NSDictionary *)obj objectForKey:@"name"];
-         NKIssue *nkIssue = [nkLib issueWithName:name];
-         if(!nkIssue)
+         if(name)
          {
-             nkIssue = [nkLib addIssueWithName:name date:[(NSDictionary *)obj objectForKey:@"date"]];
-             
-             // so this is a new issue (so far)
-             // update the newsstand app icon and add "new" badge to it
-             NSString *newsstandIconImageUrl = [(NSDictionary *)obj objectForKey:@"newsstandIcon"];
-             if(newsstandIconImageUrl)
+             NKIssue *nkIssue = [nkLib issueWithName:name];
+             if(!nkIssue)
              {
-                 AFImageRequestOperation *op = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:newsstandIconImageUrl]] success:^(UIImage *image) {
-                     if(image)
-                     {
-                         [[UIApplication sharedApplication] setNewsstandIconImage:image];
-                         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
-                     }
-                 }];
+                 nkIssue = [nkLib addIssueWithName:name date:[(NSDictionary *)obj objectForKey:@"date"]];
                  
-                 [op start];
+                 // so this is a new issue (so far)
+                 // update the newsstand app icon and add "new" badge to it
+                 NSString *newsstandIconImageUrl = [(NSDictionary *)obj objectForKey:@"newsstandIcon"];
+                 if(newsstandIconImageUrl)
+                 {
+                     AFImageRequestOperation *op = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:newsstandIconImageUrl]] success:^(UIImage *image) {
+                         if(image)
+                         {
+                             [[UIApplication sharedApplication] setNewsstandIconImage:image];
+                             [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
+                         }
+                     }];
+                     
+                     [op start];
+                 }
+                 
+                 [self saveLatestIssue:name];
              }
              
-             [self saveLatestIssue:name];
+             NSLog(@"Issue: %@",nkIssue);
          }
-         
-         NSLog(@"Issue: %@",nkIssue);
      }];
 }
 
@@ -278,6 +288,14 @@
     }
 }
 
+- (BOOL)checkAvailableDiskSpace
+{
+    NSDictionary * fileAttributes = [[NSFileManager defaultManager] attributesOfFileSystemForPath:DocumentsDirectory error:NULL];
+    unsigned long long freeSpaceInBytes = [[fileAttributes objectForKey:NSFileSystemFreeSize] unsignedLongLongValue];
+    
+    return freeSpaceInBytes > 1000 * 1000 * 700; //700mb
+}
+
 #pragma mark - subscription related code
 
 - (void)processSubscription
@@ -306,7 +324,7 @@
     subscriptionProcessing = NO;
     NSLog(@"Request %@ failed with error %@", request, error);
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Purchase error"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"訂閱失敗"
                                                     message:[error localizedDescription]
                                                    delegate:nil
                                           cancelButtonTitle:@"Close"
@@ -326,7 +344,7 @@
     }
 }
 
--(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
     for(SKPaymentTransaction *transaction in transactions)
     {
@@ -350,12 +368,12 @@
     }
 }
 
--(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
 {
     NSLog(@"Restored all completed transactions");
 }
 
--(void)finishedTransaction:(SKPaymentTransaction *)transaction
+- (void)finishedTransaction:(SKPaymentTransaction *)transaction
 {
     NSLog(@"finishedTransaction %@", transaction);
     
@@ -368,11 +386,11 @@
     [self checkReceipt:transaction.transactionReceipt];
 }
 
--(void)errorWithTransaction:(SKPaymentTransaction *)transaction
+- (void)errorWithTransaction:(SKPaymentTransaction *)transaction
 {
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Subscription failure"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"訂閱失敗"
                                                     message:[transaction.error localizedDescription]
                                                    delegate:nil
                                           cancelButtonTitle:@"Close"
@@ -380,7 +398,7 @@
     [alert show];
 }
 
--(void)checkReceipt:(NSData *)receipt
+- (void)checkReceipt:(NSData *)receipt
 {
     // save receipt
     NSString *receiptStorageFile = [DocumentsDirectory stringByAppendingPathComponent:@"receipts.plist"];
@@ -392,6 +410,16 @@
     
     [receiptStorage addObject:receipt];
     [receiptStorage writeToFile:receiptStorageFile atomically:YES];
+    
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"訂閱成功"
+                                                    message:nil
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Close"
+                                          otherButtonTitles:nil];
+    [alert show];
+    
+    /*
     
     [ReceiptCheck validateReceiptWithData:receipt completionHandler:^(BOOL success,NSString *answer){
         
@@ -408,6 +436,7 @@
             [alert show];
         };
     }];
+     */
 }
 
 #pragma mark - NSURLConnectionDownloadDelegate

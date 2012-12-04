@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CamperMapViewController : UIViewController{
+@interface CamperMapViewController : GAITrackedViewController{
     NSArray *pageAry;
 }
 

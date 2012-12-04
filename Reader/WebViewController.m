@@ -40,6 +40,8 @@
 {
     [super viewDidLoad];
     
+    self.trackedViewName = NSStringFromClass([self class]);
+    
     NSURL* url = [NSURL URLWithString:myURL];
     NSURLRequest* urlReq = [ NSURLRequest requestWithURL:url ];
     [_webView loadRequest: urlReq ];

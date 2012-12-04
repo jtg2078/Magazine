@@ -37,7 +37,6 @@
 
 - (IBAction)downloadButtonPressed:(id)sender
 {
-    [self.downloadButton setTitle:@"Preparing..." forState:UIControlStateNormal];
     [self.delegate downloadIssue:self.myIndexPath];
 }
 

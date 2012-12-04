@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface PlayMovieViewController : UIViewController{
+@interface PlayMovieViewController : GAITrackedViewController{
     MPMoviePlayerController *theMovie;
     NSDictionary *myDic;
 }

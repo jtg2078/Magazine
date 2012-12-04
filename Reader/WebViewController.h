@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PageJump.h"
 
-@interface WebViewController : UIViewController<UIWebViewDelegate>{
+@interface WebViewController : GAITrackedViewController<UIWebViewDelegate>{
     NSString *myURL;
     
 }

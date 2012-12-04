@@ -8,8 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		9626564D166C938000206539 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9626564C166C938000206539 /* StoreKit.framework */; };
-		96265657166C9F2100206539 /* ReceiptCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 96265656166C9F2100206539 /* ReceiptCheck.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9626565B166CA04B00206539 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9626565A166CA04B00206539 /* NSString+Base64.m */; };
+		96265667166D0B5300206539 /* subscriptionBtnPage.png in Resources */ = {isa = PBXBuildFile; fileRef = 96265665166D0B5300206539 /* subscriptionBtnPage.png */; };
+		96265668166D0B5300206539 /* subscriptionBtnCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 96265666166D0B5300206539 /* subscriptionBtnCell.png */; };
+		9626566C166D0C3F00206539 /* MagazineCellSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = 9626566B166D0C3F00206539 /* MagazineCellSubscription.m */; };
+		96265673166DCF6700206539 /* subscriptionPage.png in Resources */ = {isa = PBXBuildFile; fileRef = 96265671166DCF6700206539 /* subscriptionPage.png */; };
+		96265674166DCF6700206539 /* subscriptionCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 96265672166DCF6700206539 /* subscriptionCell.png */; };
+		9626567D166DD9F800206539 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9626567C166DD9F800206539 /* libGoogleAnalytics.a */; };
+		9626567F166DDA0700206539 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9626567E166DDA0700206539 /* CoreData.framework */; };
 		964F48061648F9E900A6D09E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964F48051648F9E900A6D09E /* UIKit.framework */; };
 		964F48081648F9E900A6D09E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964F48071648F9E900A6D09E /* Foundation.framework */; };
 		964F480A1648F9E900A6D09E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964F48091648F9E900A6D09E /* CoreGraphics.framework */; };
@@ -129,10 +135,21 @@
 
 /* Begin PBXFileReference section */
 		9626564C166C938000206539 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		96265655166C9F2100206539 /* ReceiptCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptCheck.h; sourceTree = "<group>"; };
-		96265656166C9F2100206539 /* ReceiptCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptCheck.m; sourceTree = "<group>"; };
 		96265659166CA04B00206539 /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
 		9626565A166CA04B00206539 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		96265665166D0B5300206539 /* subscriptionBtnPage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subscriptionBtnPage.png; sourceTree = "<group>"; };
+		96265666166D0B5300206539 /* subscriptionBtnCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subscriptionBtnCell.png; sourceTree = "<group>"; };
+		9626566A166D0C3F00206539 /* MagazineCellSubscription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagazineCellSubscription.h; sourceTree = "<group>"; };
+		9626566B166D0C3F00206539 /* MagazineCellSubscription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagazineCellSubscription.m; sourceTree = "<group>"; };
+		96265671166DCF6700206539 /* subscriptionPage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subscriptionPage.png; sourceTree = "<group>"; };
+		96265672166DCF6700206539 /* subscriptionCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subscriptionCell.png; sourceTree = "<group>"; };
+		96265677166DD9F800206539 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		96265678166DD9F800206539 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		96265679166DD9F800206539 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		9626567A166DD9F800206539 /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransaction.h; sourceTree = "<group>"; };
+		9626567B166DD9F800206539 /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
+		9626567C166DD9F800206539 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
+		9626567E166DDA0700206539 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		964F48011648F9E900A6D09E /* Magazine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Magazine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		964F48051648F9E900A6D09E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		964F48071648F9E900A6D09E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -305,6 +322,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9626567F166DDA0700206539 /* CoreData.framework in Frameworks */,
 				9626564D166C938000206539 /* StoreKit.framework in Frameworks */,
 				9668B83D165BB1AC00EA424A /* MediaPlayer.framework in Frameworks */,
 				964F48CD16497DA000A6D09E /* libz.dylib in Frameworks */,
@@ -316,21 +334,13 @@
 				964F48061648F9E900A6D09E /* UIKit.framework in Frameworks */,
 				964F48081648F9E900A6D09E /* Foundation.framework in Frameworks */,
 				964F480A1648F9E900A6D09E /* CoreGraphics.framework in Frameworks */,
+				9626567D166DD9F800206539 /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		96265654166C9F2100206539 /* ReceiptCheck */ = {
-			isa = PBXGroup;
-			children = (
-				96265655166C9F2100206539 /* ReceiptCheck.h */,
-				96265656166C9F2100206539 /* ReceiptCheck.m */,
-			);
-			path = ReceiptCheck;
-			sourceTree = "<group>";
-		};
 		96265658166CA04B00206539 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +348,19 @@
 				9626565A166CA04B00206539 /* NSString+Base64.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		96265676166DD9F800206539 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				96265677166DD9F800206539 /* GAI.h */,
+				96265678166DD9F800206539 /* GAITrackedViewController.h */,
+				96265679166DD9F800206539 /* GAITracker.h */,
+				9626567A166DD9F800206539 /* GAITransaction.h */,
+				9626567B166DD9F800206539 /* GAITransactionItem.h */,
+				9626567C166DD9F800206539 /* libGoogleAnalytics.a */,
+			);
+			path = GoogleAnalytics;
 			sourceTree = "<group>";
 		};
 		964F47F61648F9E900A6D09E = {
@@ -368,6 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				964F48871649433400A6D09E /* CFNetwork.framework */,
+				9626567E166DDA0700206539 /* CoreData.framework */,
 				964F48091648F9E900A6D09E /* CoreGraphics.framework */,
 				964F48071648F9E900A6D09E /* Foundation.framework */,
 				964F48CC16497DA000A6D09E /* libz.dylib */,
@@ -397,6 +421,8 @@
 				964F48471649134400A6D09E /* MagazineCellDownloading.m */,
 				964F48491649135600A6D09E /* MagazineCellToDownload.h */,
 				964F484A1649135600A6D09E /* MagazineCellToDownload.m */,
+				9626566A166D0C3F00206539 /* MagazineCellSubscription.h */,
+				9626566B166D0C3F00206539 /* MagazineCellSubscription.m */,
 				964F48431649100F00A6D09E /* MagazineFooterView.h */,
 				964F48441649100F00A6D09E /* MagazineFooterView.m */,
 			);
@@ -430,6 +456,10 @@
 		964F48291648FE7000A6D09E /* image */ = {
 			isa = PBXGroup;
 			children = (
+				96265671166DCF6700206539 /* subscriptionPage.png */,
+				96265672166DCF6700206539 /* subscriptionCell.png */,
+				96265665166D0B5300206539 /* subscriptionBtnPage.png */,
+				96265666166D0B5300206539 /* subscriptionBtnCell.png */,
 				96E3A193164BB205001DEF64 /* reader */,
 				964F48E2164A265600A6D09E /* bg_bookshelf.png */,
 				964F482A1648FE7000A6D09E /* bg_section.png */,
@@ -469,9 +499,9 @@
 		964F486116493B5D00A6D09E /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				96265676166DD9F800206539 /* GoogleAnalytics */,
 				964F48951649448600A6D09E /* AFNetworking */,
 				96265658166CA04B00206539 /* Category */,
-				96265654166C9F2100206539 /* ReceiptCheck */,
 				9675C87316562EBE00522E0D /* ssziparchive */,
 				964F48B21649488800A6D09E /* SVProgressHUD */,
 			);
@@ -753,6 +783,10 @@
 				9668B837165BB10F00EA424A /* PlayMovieViewController.xib in Resources */,
 				9668B838165BB10F00EA424A /* FashionShowViewController.xib in Resources */,
 				9668B83A165BB10F00EA424A /* PageCell.xib in Resources */,
+				96265667166D0B5300206539 /* subscriptionBtnPage.png in Resources */,
+				96265668166D0B5300206539 /* subscriptionBtnCell.png in Resources */,
+				96265673166DCF6700206539 /* subscriptionPage.png in Resources */,
+				96265674166DCF6700206539 /* subscriptionCell.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -808,8 +842,8 @@
 				9668B839165BB10F00EA424A /* CamperMapViewController.m in Sources */,
 				9668B83B165BB10F00EA424A /* BaseCell.m in Sources */,
 				965A2086165CD3A0007EBB0C /* Constant.m in Sources */,
-				96265657166C9F2100206539 /* ReceiptCheck.m in Sources */,
 				9626565B166CA04B00206539 /* NSString+Base64.m in Sources */,
+				9626566C166D0C3F00206539 /* MagazineCellSubscription.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -873,7 +907,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -881,6 +915,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -894,6 +929,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Magazine/Magazine-Prefix.pch";
 				INFOPLIST_FILE = "Magazine/Magazine-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Library/GoogleAnalytics\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
@@ -903,10 +942,14 @@
 		964F48271648F9E900A6D09E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Magazine/Magazine-Prefix.pch";
 				INFOPLIST_FILE = "Magazine/Magazine-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Library/GoogleAnalytics\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;

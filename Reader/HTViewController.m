@@ -46,6 +46,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.trackedViewName = NSStringFromClass([self class]);
     NSDictionary *cellDic=[pageAry objectAtIndex:0];
     type=[cellDic objectForKey:@"type"];
     

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <NewsstandKit/NewsstandKit.h>
+#import "GAITracker.h"
 
 
 @protocol MagazineManagerBookcaseDelegate<NSObject>
@@ -34,6 +35,7 @@
 @property (strong, nonatomic) NSString *currentIssuePath;
 @property (assign, nonatomic) BOOL isFlowLayout;
 @property (weak, nonatomic) id<MagazineManagerBookcaseDelegate> bookcaseDelegate;
+@property (weak, nonatomic) id<GAITracker> tracker;
 
 + (MagazineManager *)sharedInstance;
 
@@ -59,5 +61,6 @@
 - (void)markIssueRead:(NSString *)issueName;
 
 - (void)processSubscription;
+- (BOOL)checkAvailableDiskSpace;
 
 @end

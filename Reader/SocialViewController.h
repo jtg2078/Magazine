@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SocialViewController : UIViewController{
+@interface SocialViewController : GAITrackedViewController{
     NSArray *pageAry;
 }
 @property (retain, nonatomic) NSArray *pageAry;

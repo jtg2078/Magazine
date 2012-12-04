@@ -76,6 +76,8 @@
 {
     [super viewDidLoad];
     
+    self.trackedViewName = @"main viewer controller";
+    
     [self hideTopBottomView];
     _preView.alpha=0;
     [_bgAlpha05 setHidden:YES];

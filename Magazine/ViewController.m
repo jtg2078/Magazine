@@ -33,6 +33,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    // -------------------- google analytics --------------------
+    
+    self.trackedViewName = @"Bookcase";
+    
     // -------------------- manager --------------------
     
     self.manager = [MagazineManager sharedInstance];
@@ -74,6 +78,7 @@
     self.viewMode = ViewModeGrid;
     self.library = [NKLibrary sharedLibrary];
     self.issuesPreparingForDownload = [NSMutableSet set];
+    self.issuesIsUnzipping = [NSMutableSet set];
     
     // -------------------- loading catalog --------------------
     
@@ -140,8 +145,11 @@
     [self.collectionView setCollectionViewLayout:self.pageLayout animated:YES];
     [self.collectionView.collectionViewLayout invalidateLayout];
     
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
-                                atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
+    if([self.manager numberOfIssues] + 1 >= 2)
+    {
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]
+                                    atScrollPosition:UICollectionViewScrollPositionRight animated:NO];
+    }
     
     [UIView animateWithDuration:0.3 animations:^{
         self.collectionView.backgroundView.alpha = 0.0f;
@@ -150,7 +158,32 @@
 
 - (IBAction)subscribeBarButtonPressed:(id)sender
 {
+    [self handleSubscriptionButtonPressed];
+}
+
+- (void)handleSubscriptionButtonPressed
+{
     [self.manager processSubscription];
+}
+
+- (void)gotoViewer:(NSIndexPath *)indexPath
+{
+    NSString *issueName = [self.manager nameOfIssueAtIndex:indexPath.row];
+    NKIssue *issue = [self.library issueWithName:issueName];
+    self.manager.currentIssuePath = [[self.manager downloadPathForIssue:issue] stringByAppendingPathComponent:@"book"];
+    
+    [self.manager setCurrentIssue:issueName];
+    [self.manager markIssueRead:issueName];
+    
+    if(DEVELOPMENT_MODE == YES)
+    {
+        self.manager.currentIssuePath = [[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"book"];
+        
+        NSLog(@"path: %@", self.manager.currentIssuePath);
+    }
+    
+    RootViewController *rvc = [[RootViewController alloc] init];
+    [self.navigationController pushViewController:rvc animated:YES];
 }
 
 #pragma mark - UICollectionView Datasource
@@ -170,6 +203,14 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(indexPath.row == 0)
+    {
+        MagazineCellSubscription *cell = [cv dequeueReusableCellWithReuseIdentifier:@"MagazineCellSubscription"
+                                                                       forIndexPath:indexPath];
+        cell.delegate = self;
+        return cell;
+    }
+    
     NSString *issueName = [self.manager nameOfIssueAtIndex:indexPath.row];
     NKIssue *issue = [self.library issueWithName:issueName];
     NSString *magazineName = @"團團誌";
@@ -203,6 +244,17 @@
         cell.issueTitle.text = issueTitle;
         cell.myIndexPath = indexPath;
         cell.delegate = self;
+        
+        if([self.issuesIsUnzipping containsObject:indexPath] == YES)
+        {
+            cell.progressLabel.text = @"Processing...";
+            cell.cancelButton.enabled = NO;
+        }
+        else
+        {
+            cell.progressLabel.text = @"";
+            cell.cancelButton.enabled = YES;
+        }
         
         CGRect rect = cell.progressBarImageView.frame;
         rect.size.width = 0;
@@ -290,6 +342,13 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 }
  */
 
+#pragma mark - MagazineCellSubscriptionDelegate
+
+- (void)subscribeToMagazine
+{
+    [self handleSubscriptionButtonPressed];
+}
+
 #pragma mark - MagazineCellDelegate
 
 - (void)deleteIssue:(NSIndexPath *)indexPath
@@ -303,24 +362,7 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [SVProgressHUD showWithStatus:@"讀取中"];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSString *issueName = [self.manager nameOfIssueAtIndex:indexPath.row];
-        NKIssue *issue = [self.library issueWithName:issueName];
-        self.manager.currentIssuePath = [[self.manager downloadPathForIssue:issue] stringByAppendingPathComponent:@"book"];
-        
-        [self.manager setCurrentIssue:issueName];
-        [self.manager markIssueRead:issueName];
-        
-        if(DEVELOPMENT_MODE == YES)
-        {
-            self.manager.currentIssuePath = [[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"book"];
-            
-            NSLog(@"path: %@", self.manager.currentIssuePath);
-        }
-        
-        RootViewController *rvc = [[RootViewController alloc] init];
-        [self.navigationController pushViewController:rvc animated:YES];
-    });
+    [self performSelector:@selector(gotoViewer:) withObject:indexPath afterDelay:0.5];
 }
 
 #pragma mark - MagazineCellDownloadingDelegate
@@ -341,6 +383,20 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)downloadIssue:(NSIndexPath *)indexPath
 {
+    if([self.manager checkAvailableDiskSpace] == NO)
+    {
+        [SVProgressHUD showErrorWithStatus:@"無法下載, 您的iPad可用空間不足"];
+        return;
+    }
+    
+    // Because it would take some noticable time before download progress reports in
+    id cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+    if([cell isKindOfClass:[MagazineCellToDownload class]] == YES)
+    {
+        MagazineCellToDownload *downloadCell = (MagazineCellToDownload *)cell;
+        [downloadCell.downloadButton setTitle:@"Preparing..." forState:UIControlStateNormal];
+    }
+    
     NSString *issueName = [self.manager nameOfIssueAtIndex:indexPath.row];
     
     [self.manager downloadIssue:issueName
@@ -388,7 +444,10 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
         downloadingCell.progressLabel.text = [NSString stringWithFormat:@" %@ MB / %@ MB", downloadedInMBString, totalMBString];
         
         if([downloadedInMBString isEqualToString:totalMBString] == YES)
+        {
             downloadingCell.progressLabel.text = @"Processing...";
+            [self.issuesIsUnzipping addObject:indexPath];
+        }
     }
     else
     {
@@ -419,17 +478,23 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
     {
         MagazineCellDownloading *downloadingCell = (MagazineCellDownloading *)cell;
         downloadingCell.progressLabel.text = @"Processing...";
+        downloadingCell.cancelButton.enabled = NO;
+        
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSString *zipPath = [destinationURL path];
             NSString *destinationPath = [self.manager downloadPathForIssue:issue];
-            [SSZipArchive unzipFileAtPath:zipPath toDestination:destinationPath];
-            
-            [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
             
             [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
                 NSLog(@"Unzipping process is time out in background task mode: %@", destinationPath);
             }];
+            
+            [SSZipArchive unzipFileAtPath:zipPath toDestination:destinationPath];
+            
+            // unzip completed, so remove it from the set
+            [self.issuesIsUnzipping removeObject:indexPath];
+            
+            [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
         });
     }
 }

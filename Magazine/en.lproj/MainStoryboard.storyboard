@@ -27,14 +27,15 @@
                                             <action selector="pageViewBarButtonPressed:" destination="2" id="Xji-Sp-D3I"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="e2h-J9-H1u"/>
-                                    <barButtonItem title="團團誌" style="plain" id="kr3-YR-fX8"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="c7W-TQ-y2F"/>
-                                    <barButtonItem title="Subscribe" id="MAy-04-AZN">
+                                    <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="3kI-Se-3sm"/>
+                                    <barButtonItem title="訂閱" style="plain" id="MAy-04-AZN">
                                         <connections>
                                             <action selector="subscribeBarButtonPressed:" destination="2" id="GKC-bU-NcR"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="e2h-J9-H1u"/>
+                                    <barButtonItem title="團團誌" style="plain" id="kr3-YR-fX8"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="c7W-TQ-y2F"/>
                                 </items>
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="mJQ-Bl-tZs">
@@ -48,8 +49,42 @@
                                     <inset key="sectionInset" minX="30" minY="30" maxX="30" maxY="30"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MagazineCell" id="And-gY-o6a" customClass="MagazineCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MagazineCellSubscription" id="4SC-w5-rfL" customClass="MagazineCellSubscription">
                                         <rect key="frame" x="30" y="30" width="339" height="245"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="339" height="245"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="subscriptionCell.png" id="QAV-t3-Jhd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="339" height="245"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PJT-D7-1gd">
+                                                    <rect key="frame" x="130" y="130" width="183" height="37"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" image="subscriptionBtnCell.png">
+                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="myButtonPressed:" destination="4SC-w5-rfL" eventType="touchUpInside" id="DIX-xL-CFZ"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="myButton" destination="PJT-D7-1gd" id="dXH-fY-gmt"/>
+                                            <outlet property="myImageView" destination="QAV-t3-Jhd" id="ejV-4g-9Y2"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MagazineCell" id="And-gY-o6a" customClass="MagazineCell">
+                                        <rect key="frame" x="399" y="30" width="339" height="245"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="339" height="245"/>
@@ -110,7 +145,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MagazineCellDownloading" id="vd8-1F-Hji" customClass="MagazineCellDownloading">
-                                        <rect key="frame" x="399" y="30" width="339" height="245"/>
+                                        <rect key="frame" x="30" y="305" width="339" height="245"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="339" height="245"/>
@@ -187,7 +222,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MagazineCellToDownload" id="WWo-lT-6bD" customClass="MagazineCellToDownload">
-                                        <rect key="frame" x="30" y="305" width="339" height="245"/>
+                                        <rect key="frame" x="399" y="305" width="339" height="245"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="339" height="245"/>
@@ -297,6 +332,8 @@
         <image name="btn_pause.png" width="62" height="40"/>
         <image name="progressBar_bg.png" width="117" height="8"/>
         <image name="progressbar_filling.png" width="8" height="8"/>
+        <image name="subscriptionBtnCell.png" width="183" height="37"/>
+        <image name="subscriptionCell.png" width="339" height="245"/>
     </resources>
     <classes>
         <class className="MagazineCell" superclassName="UICollectionViewCell">
@@ -324,6 +361,14 @@
                 <relationship kind="outlet" name="progressBarBgImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="progressBarImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="progressLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MagazineCellSubscription" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MagazineCellSubscription.h"/>
+            <relationships>
+                <relationship kind="action" name="myButtonPressed:"/>
+                <relationship kind="outlet" name="myButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="myImageView" candidateClass="UIImageView"/>
             </relationships>
         </class>
         <class className="MagazineCellToDownload" superclassName="UICollectionViewCell">

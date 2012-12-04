@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MagazineManager.h"
+#import "GAI.h"
 
 @implementation AppDelegate
 
@@ -15,8 +16,16 @@
 {
     // Override point for customization after application launch.
     
+    MagazineManager *manager = [MagazineManager sharedInstance];
+    
+    // setup google analytics
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [GAI sharedInstance].dispatchInterval = 20;
+    [GAI sharedInstance].debug = YES;
+    manager.tracker = [[GAI sharedInstance] trackerWithTrackingId:GOOGLE_ANALYTICS_ID];
+    
     // resume any failed download
-    [[MagazineManager sharedInstance] resumeAnyFailedDownload];
+    [manager resumeAnyFailedDownload];
     
     return YES;
 }

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StoresViewController : UIViewController<UIWebViewDelegate>{
+@interface StoresViewController : GAITrackedViewController<UIWebViewDelegate>{
     
 }
 
